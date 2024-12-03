@@ -1,8 +1,26 @@
 import React from "react";
+import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
+  const links = (
+    <>
+      <li>
+         <NavLink to="/"> Home </NavLink>
+      </li>
+      <li>
+         <NavLink to="/all-sports-equipment"> All Sports Equipment </NavLink>
+      </li>
+      <li>
+         <NavLink to="/add-equipment"> Add Equipment (Private Route) </NavLink>
+      </li>
+      <li>
+         <NavLink to="/my-equipment-list"> My Equipment List (Private Route) </NavLink>
+      </li>
+    </>
+  );
+
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar py-6 bg-white">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -23,54 +41,21 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow font-DMSans"
           >
-            <li>
-              <a>Item 1</a>
-            </li>
-            <li>
-              <a>Parent</a>
-              <ul className="p-2">
-                <li>
-                  <a>Submenu 1</a>
-                </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a>Item 3</a>
-            </li>
+             {links}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">Site logo</a>
+        <a className="btn btn-ghost text-4xl font-barlow">Equi<span className="text-red-500">Sports</span></a>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-          <li>
-            <a>Item 1</a>
-          </li>
-          <li>
-            <details>
-              <summary>Parent</summary>
-              <ul className="p-2">
-                <li>
-                  <a>Submenu 1</a>
-                </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
-              </ul>
-            </details>
-          </li>
-          <li>
-            <a>Item 3</a>
-          </li>
+        <ul className="menu menu-horizontal px-1 font-DMSans font-medium ">
+           {links}
         </ul>
       </div>
-      <div className="navbar-end">
-        <a className="btn">Button</a>
+      <div className="navbar-end font-DMSans">
+        <Link to="/login" className="btn mr-6">Login</Link>
+        <Link to="/register" className="btn">Register</Link>
       </div>
     </div>
   );

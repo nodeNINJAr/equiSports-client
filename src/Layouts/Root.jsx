@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import { Outlet } from 'react-router-dom';
 
 const Root = () => {
     return (
@@ -9,7 +10,7 @@ const Root = () => {
             <Navbar/>
             {/* main */}
             <main className='min-h-screen'>
-
+                 <Outlet/>
             </main>
             {/* Footer */}
             <Footer/>
