@@ -3,6 +3,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/*  */
+body{
+    font-family: "Barlow Condensed", sans-serif;
+    /* font-family: "DM Sans", sans-serif; */
+    letter-spacing:0.5px;
+}
 
-/* font-family: "Barlow Condensed", sans-serif; */
-/* font-family: "DM Sans", sans-serif; */
+
+/* bg image */
+
+.loginBg{
+    background-image: url("./assets/login-banner.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

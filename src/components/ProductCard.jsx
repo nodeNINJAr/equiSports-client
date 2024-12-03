@@ -1,7 +1,6 @@
 import React from "react";
 
 const ProductCard = ({ product }) => {
-  console.log(product);
   const {
     image,
     rating,
@@ -12,18 +11,22 @@ const ProductCard = ({ product }) => {
     price,
   } = product;
   return (
-    <div className=" box-border overflow-hidden group hover:border border-slate-200 p-3 transition-all ease-in-out duration-100 rounded-sm">
+    <div className="box-border overflow-hidden group  hover:border border-slate-200 hover:p-3 transition-all ease-in-out duration-300 rounded-sm ">
       {" "}
       <div className="relative rounded-sm ">
-        <img className="w-full rounded-sm" src={image} alt={product["Item Name"]} />
-        <div className="absolute bottom-0 left-0 w-full h-0 bg-blue-500 text-white text-center opacity-0 group-hover:h-12 group-hover:opacity-100 transition-all duration-300 ease-in-out">
+        <img
+          className="w-full rounded-sm"
+          src={image}
+          alt={product["Item Name"]}
+        />
+        <div className="absolute bottom-0 left-0 w-full h-0 bg-[#A0A0A0] text-white text-center opacity-0 group-hover:h-12 group-hover:opacity-100 transition-all duration-300 ease-in-out">
           {" "}
-          <button className="w-full h-full">Select Options</button>
+          <button className="w-full h-full text-white font-semibold font-barlow tracking-widest text-lg ">View Details</button>
         </div>{" "}
       </div>
       <div className="py-4">
         <div className="font-bold text-xl mb-2">{itemname}</div>
-        <p className="text-gray-700 text-base">{description}</p>
+        <p title={description} className="text-gray-700 text-base whitespace-nowrap overflow-ellipsis overflow-hidden">{description}</p>
         <div className="flex justify-between items-center pt-4">
           <p className="text-gray-900 text-xl font-bold">${price.toFixed(2)}</p>
           <div className="flex items-center">
