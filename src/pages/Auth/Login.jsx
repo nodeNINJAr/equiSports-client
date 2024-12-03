@@ -39,9 +39,9 @@ const Login = () => {
      })
   };
   //
-console.log(import.meta.env.VITE_apiKey)
+
   return (
-    <div className="flex h-screen items-center justify-center loginBg px-6 md:px-20">
+    <div className="flex items-center justify-center loginBg px-6 py-16 md:p-20">
       <div className="flex flex-wrap  shadow-lg rounded-lg overflow-hidden max-w-4xl w-full">
         {/* Left Side */}
         <div className="w-full md:w-1/2 bg-cover bg-center">

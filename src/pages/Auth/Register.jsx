@@ -47,8 +47,8 @@ const Register = () => {
   };
   //
   return (
-    <div className="flex h-screen items-center justify-center loginBg px-6 md:px-20 py-20">
-      <div className="flex flex-wrap  shadow-lg rounded-lg overflow-hidden max-w-4xl w-full">
+    <div className="flex items-center justify-center loginBg px-6 py-16 md:p-20">
+      <div className="flex flex-wrap shadow-lg rounded-lg overflow-hidden max-w-4xl w-full">
         {/* Left Side */}
         <div className="w-full md:w-1/2 bg-cover bg-center">
           <div className="h-[240px] md:h-full flex flex-col items-center justify-center text-white bg-black bg-opacity-50 p-8">
@@ -62,7 +62,7 @@ const Register = () => {
 
         {/* Right Side */}
         <div className="w-full md:w-1/2 p-8 bg-[#8887876a] backdrop-blur-sm pt-12 md:pt-8">
-          <h2 className="text-2xl font-bold text-center mb-4">Register</h2>
+          <h2 className="text-3xl font-bold text-center mb-6">Register</h2>
           <form onSubmit={handleRegister} className="space-y-4">
             <div>
               <label

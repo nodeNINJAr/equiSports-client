@@ -1,5 +1,5 @@
-import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, updateProfile } from 'firebase/auth';
-import React, { createContext } from 'react';
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, updateProfile } from 'firebase/auth';
+import React, { createContext, useEffect, useState } from 'react';
 import { auth } from '../firebase.init';
 
 
@@ -7,6 +7,9 @@ export const AuthContext = createContext(null)
 // 
 const AuthProvider = ({children}) => {
 
+// collect user on state by observer
+const [user , setUser] = useState(null); 
+console.log(user)
 
 // Register using email and password
 const registerUsingEmailPass = (newUserInfo)=>{
@@ -20,15 +23,32 @@ const updateUserProfile = (newUserInfo)=>{
 const loginUsingEmailPass = (userLoginInfo)=>{
     return signInWithEmailAndPassword(auth ,userLoginInfo?.userEmail , userLoginInfo?.userPassword);
 }
-
 // sign in with google
 const provider = new GoogleAuthProvider();
 const signInWithGoogle =()=>{
     return signInWithPopup(auth , provider);
 }
+// observer
+useEffect(()=>{
+     const unsubscribe = onAuthStateChanged(auth , (currentUser) => {
+      //   
+      if(currentUser){
+          setUser(currentUser);
+      }
+      else{
+        setUser("")
+      }
 
+     })
+    //  
+      return ()=> unsubscribe()
+},[])
+
+
+
+// conatainer obj
 const authInfo = {
-   name:"ridoy",
+   user,
    registerUsingEmailPass,
    updateUserProfile,
    loginUsingEmailPass,

@@ -1,24 +1,40 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../provider/AuthProvider";
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase.init";
 
 const Navbar = () => {
+  const { user } = useContext(AuthContext);
+  //
   const links = (
     <>
       <li>
-         <NavLink to="/"> Home </NavLink>
+        <NavLink to="/"> Home </NavLink>
       </li>
       <li>
-         <NavLink to="/all-sports-equipment"> All Sports Equipment </NavLink>
+        <NavLink to="/all-sports-equipment"> All Sports Equipment </NavLink>
       </li>
       <li>
-         <NavLink to="/add-equipment"> Add Equipment (Private Route) </NavLink>
+        <NavLink to="/add-equipment"> Add Equipment (Private Route) </NavLink>
       </li>
       <li>
-         <NavLink to="/my-equipment-list"> My Equipment List (Private Route) </NavLink>
+        <NavLink to="/my-equipment-list">
+          {" "}
+          My Equipment List (Private Route){" "}
+        </NavLink>
       </li>
     </>
   );
-
+//  sign Out
+ const handleSignOut =()=>{
+    signOut(auth)
+    .then(res=>{
+         alert('signOut SuccessFully')
+    }).catch(err =>{
+       console.log(err.message)
+    })
+ }
   return (
     <div className="navbar py-6 bg-white">
       <div className="navbar-start">
@@ -43,19 +59,36 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow font-DMSans"
           >
-             {links}
+            {links}
           </ul>
         </div>
-        <a className="btn btn-ghost text-4xl font-barlow">Equi<span className="text-red-500">Sports</span></a>
+        <a className="btn btn-ghost text-4xl font-barlow">
+          Equi<span className="text-red-500">Sports</span>
+        </a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 font-DMSans font-medium ">
-           {links}
+          {links}
         </ul>
       </div>
       <div className="navbar-end font-DMSans">
-        <Link to="/login" className="btn mr-6">Login</Link>
-        <Link to="/register" className="btn">Register</Link>
+        {user ? (
+          <>
+              <img className="rounded-full border-2 border-slate-300 w-12 h-12 mr-4" src={user?.photoURL} alt={`${user?.displayName} "pics"`} />
+            <Link onClick={handleSignOut} to="/" className="btn">
+                Log Out
+            </Link>
+          </>
+        ) : (
+          <>
+            <Link to="/login" className="btn mr-6">
+              Login
+            </Link>
+            <Link to="/register" className="btn">
+              Register
+            </Link>
+          </>
+        )}
       </div>
     </div>
   );
