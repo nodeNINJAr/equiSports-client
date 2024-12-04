@@ -9,6 +9,7 @@ import MyEquipmentList from '../pages/PrivetRoutes/MyEquipmentList';
 import Login from '../pages/Auth/Login';
 import Register from '../pages/Auth/Register';
 import PrivateRoute from '../pages/PrivetRoutes/PrivateRoute'
+import ViewDetails from '../pages/PrivetRoutes/ViewDetails';
 
 // 
 export const router = createBrowserRouter([
@@ -20,8 +21,7 @@ export const router = createBrowserRouter([
             {
                path:'/',
               element:<Home/>,
-              loader: ()=> fetch('data.json')
-
+              loader: ()=> fetch('/data.json')
             },
             {
               path:"/all-sports-equipment",
@@ -34,6 +34,10 @@ export const router = createBrowserRouter([
             {
               path:"/my-equipment-list",
               element:<PrivateRoute><MyEquipmentList/></PrivateRoute>
+            },
+            {
+              path:"/view-details/:id",
+              element:<PrivateRoute><ViewDetails/></PrivateRoute>
             },
             {
               path:"/login",

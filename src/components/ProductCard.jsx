@@ -1,7 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
   const {
+    id,
     image,
     rating,
     stockstatus,
@@ -21,7 +23,7 @@ const ProductCard = ({ product }) => {
         />
         <div className="absolute bottom-0 left-0 w-full h-0 bg-[#A0A0A0] text-white text-center opacity-0 group-hover:h-12 group-hover:opacity-100 transition-all duration-300 ease-in-out">
           {" "}
-          <button className="w-full h-full text-white font-semibold font-barlow tracking-widest text-lg ">View Details</button>
+            <Link to={`/view-details/${id}`}> <button className="w-full h-full text-white font-semibold font-barlow tracking-widest text-lg ">View Details</button></Link>
         </div>{" "}
       </div>
       <div className="py-4">
