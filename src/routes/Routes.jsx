@@ -10,8 +10,7 @@ import Login from '../pages/Auth/Login';
 import Register from '../pages/Auth/Register';
 import PrivateRoute from '../pages/PrivetRoutes/PrivateRoute'
 
-
-
+// 
 export const router = createBrowserRouter([
         {
           path: "/",
