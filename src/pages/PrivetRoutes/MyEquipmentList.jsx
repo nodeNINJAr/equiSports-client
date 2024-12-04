@@ -21,7 +21,7 @@ const MyEquipmentList = () => {
       {uniqueData ? (
         <>
           {
-            uniqueData.map(product =>  <ProductCard key={product._id+"y"} uniqueProduct={product} />)
+            uniqueData.map(product => <ProductCard key={product._id+"y"} uniqueProduct={product} uniqueData={uniqueData} setUniqueData={setUniqueData} />)
           }
         </>
       ) : (
