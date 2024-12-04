@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 
 const MyEquipmentList = () => {
@@ -33,7 +32,7 @@ const MyEquipmentList = () => {
              {
                 uniqueData.map(( product , idx  )=> <tbody>
                     {/* row 1 */}
-                    <tr>
+                    <tr className="hover:bg-slate-100">
                       <th>{idx+1}</th>
                       <td>{product.productName}</td>
                       <td>{product.productPrice}</td>
