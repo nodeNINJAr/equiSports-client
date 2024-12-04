@@ -9,8 +9,8 @@ const AuthProvider = ({children}) => {
 
 // collect user on state by observer
 const [user , setUser] = useState(null); 
-console.log(user)
-
+// 
+const [loader , setLoader] = useState(true);
 // Register using email and password
 const registerUsingEmailPass = (newUserInfo)=>{
     return createUserWithEmailAndPassword(auth , newUserInfo?.userEmail, newUserInfo?.userPassword);
@@ -34,9 +34,12 @@ useEffect(()=>{
       //   
       if(currentUser){
           setUser(currentUser);
+          setLoader(false)
+
       }
       else{
-        setUser("")
+        setUser("");
+        setLoader(false)
       }
 
      })
@@ -52,13 +55,15 @@ const authInfo = {
    registerUsingEmailPass,
    updateUserProfile,
    loginUsingEmailPass,
-   signInWithGoogle
+   signInWithGoogle,
+   loader,
+   setLoader
 
 }
 
 
-    // 
-    return (
+// 
+return (
         <AuthContext.Provider value={authInfo}>
              {children}
         </AuthContext.Provider>

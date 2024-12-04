@@ -15,26 +15,34 @@ const Navbar = () => {
       <li>
         <NavLink to="/all-sports-equipment"> All Sports Equipment </NavLink>
       </li>
-      <li>
-        <NavLink to="/add-equipment"> Add Equipment (Private Route) </NavLink>
-      </li>
-      <li>
-        <NavLink to="/my-equipment-list">
-          {" "}
-          My Equipment List (Private Route){" "}
-        </NavLink>
-      </li>
+      {user && (
+        <>
+          <li>
+            <NavLink to="/add-equipment">
+              {" "}
+              Add Equipment (Private Route){" "}
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/my-equipment-list">
+              {" "}
+              My Equipment List (Private Route){" "}
+            </NavLink>
+          </li>
+        </>
+      )}
     </>
   );
-//  sign Out
- const handleSignOut =()=>{
+  //  sign Out
+  const handleSignOut = () => {
     signOut(auth)
-    .then(res=>{
-         alert('signOut SuccessFully')
-    }).catch(err =>{
-       console.log(err.message)
-    })
- }
+      .then((res) => {
+        alert("signOut SuccessFully");
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
   return (
     <div className="navbar py-6 bg-white">
       <div className="navbar-start">
@@ -74,9 +82,13 @@ const Navbar = () => {
       <div className="navbar-end font-DMSans">
         {user ? (
           <>
-              <img className="rounded-full border-2 border-slate-300 w-12 h-12 mr-4" src={user?.photoURL} alt={`${user?.displayName} "pics"`} />
+            <img
+              className="rounded-full border-2 border-slate-300 w-12 h-12 mr-4"
+              src={user?.photoURL}
+              alt={`${user?.displayName} "pics"`}
+            />
             <Link onClick={handleSignOut} to="/" className="btn">
-                Log Out
+              Log Out
             </Link>
           </>
         ) : (
