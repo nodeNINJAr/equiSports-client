@@ -55,7 +55,7 @@ const ProductCard = ({ product, uniqueProduct }) => {
           uniqueProduct &&  <>
             <div className="absolute bottom-0 left-0  w-0 bg-blue-400 hover:bg-green-500 text-white text-center opacity-0 group-hover:w-24 group-hover:opacity-100 transition-all duration-300 ease-in-out rounded-full">
               {" "}
-              <Link to={`/view-details/${_id}`}>
+              <Link to="/my-equipment-list/update-product">
                 {" "}
                 <button className="w-full h-full text-white font-normal font-barlow tracking-normal text-lg flex justify-center items-center gap-1 ">
                   <AiFillEdit /> Update

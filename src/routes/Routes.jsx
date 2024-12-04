@@ -10,6 +10,8 @@ import Login from '../pages/Auth/Login';
 import Register from '../pages/Auth/Register';
 import PrivateRoute from '../pages/PrivetRoutes/PrivateRoute'
 import ViewDetails from '../pages/PrivetRoutes/ViewDetails';
+import UpdateProduct from '../pages/PrivetRoutes/UpdateProduct';
+import Page404 from '../pages/Page404';
 
 // 
 export const router = createBrowserRouter([
@@ -29,6 +31,10 @@ export const router = createBrowserRouter([
               loader: ()=> fetch('http://localhost:5000/allproduct')
             },
             {
+              path:"/view-details/:id",
+              element:<PrivateRoute><ViewDetails/></PrivateRoute>
+            },
+            {
               path:"/add-equipment",
               element:<PrivateRoute><AddEquipment/></PrivateRoute>
             },
@@ -38,8 +44,9 @@ export const router = createBrowserRouter([
               
             },
             {
-              path:"/view-details/:id",
-              element:<PrivateRoute><ViewDetails/></PrivateRoute>
+              path:"/my-equipment-list/update-product",
+              element:<UpdateProduct/>
+              
             },
             {
               path:"/login",
@@ -52,6 +59,10 @@ export const router = createBrowserRouter([
 
           ]
         },
+        {
+          path:'*',
+          element:<Page404/>
+        }
       ]);
 
 
