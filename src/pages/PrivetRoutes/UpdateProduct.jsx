@@ -26,12 +26,25 @@ const UpdateProduct = () => {
         productRating: form.productRating.value,
         ProcessTime: form.ProcessTime.value,
         StockProduct: form.StockProduct.value,
-        productUrl: imageUrl,
+        productUrl: imageUrl || productData?.productUrl ,
         productCate: form.productCate.value,
         productCustomization: form.customize.value,
       };
-  
-  
+       
+     ;
+
+     fetch(`http://localhost:5000/my-equipment-list/update-product/${productData?._id}`,{
+         method:"PATCH",
+         headers:{
+            'content-type' : 'application/json'
+         },
+         body: JSON.stringify(productInfo)
+     }).then(res=> res.json())
+     .then(data=>{
+        console.log(data)
+        alert("update-successfully")
+     })
+      
     };
     //
     const handleImage = (e) => {
