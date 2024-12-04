@@ -21,7 +21,7 @@ export const router = createBrowserRouter([
             {
                path:'/',
               element:<Home/>,
-              loader: ()=> fetch('/data.json')
+              loader: ()=> fetch('http://localhost:5000/allproduct')
             },
             {
               path:"/all-sports-equipment",
@@ -33,7 +33,8 @@ export const router = createBrowserRouter([
             },
             {
               path:"/my-equipment-list",
-              element:<PrivateRoute><MyEquipmentList/></PrivateRoute>
+              element:<PrivateRoute><MyEquipmentList/></PrivateRoute>,
+              loader:()=>fetch('http://localhost:5000/allproduct')
             },
             {
               path:"/view-details/:id",
