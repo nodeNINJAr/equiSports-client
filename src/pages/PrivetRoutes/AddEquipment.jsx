@@ -63,7 +63,7 @@ const AddEquipment = () => {
           </h1>
           <div className="flex justify-between items-center gap-6">
             <span className="border px-6 py-3 rounded-lg text-lg font-medium">
-              Total Added product : <span>2</span>
+              Total Added product : <span>{}</span>
             </span>
             <button className="btn bg-[#9feea7] rounded-full px-6 text-base">
               <IoCheckmark className="text-xl" />
