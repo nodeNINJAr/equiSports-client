@@ -1,11 +1,15 @@
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, updateProfile } from 'firebase/auth';
 import React, { createContext, useEffect, useState } from 'react';
 import { auth } from '../firebase.init';
-
+import Swal from 'sweetalert2'
 
 export const AuthContext = createContext(null)
 // 
 const AuthProvider = ({children}) => {
+// state for set error and success message
+const [error,setError] = useState({});
+const[success,setSuccess] = useState({});
+
 
 // collect user on state by observer
 const [user , setUser] = useState(null); 
@@ -47,7 +51,18 @@ useEffect(()=>{
       return ()=> unsubscribe()
 },[])
 
-
+// toast
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'center',
+  iconColor: 'white',
+  customClass: {
+    popup: 'colored-toast',
+  },
+  showConfirmButton: false,
+  timer: 1500,
+  timerProgressBar: true,
+})
 
 // conatainer obj
 const authInfo = {
@@ -57,7 +72,12 @@ const authInfo = {
    loginUsingEmailPass,
    signInWithGoogle,
    loader,
-   setLoader
+   setLoader,
+   Toast,
+   error,
+   setError,
+   success,
+   setSuccess
 
 }
 

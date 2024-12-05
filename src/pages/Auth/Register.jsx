@@ -1,49 +1,149 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 
 const Register = () => {
   //
-  const { registerUsingEmailPass, updateUserProfile , signInWithGoogle } = useContext(AuthContext);
-
+  const {
+    registerUsingEmailPass,
+    updateUserProfile,
+    signInWithGoogle,
+    Toast,
+    success,
+    setSuccess,
+    error,
+    setError,
+  } = useContext(AuthContext);
+  //
+  const [password, setPassword] = useState();
+  //
+  const [url, setUrl] = useState("");
+  //
+  const [showPass, setShowPass] = useState(false);
+  //
+  const navigate = useNavigate();
   const handleRegister = (e) => {
     e.preventDefault();
     //
     const form = e.target;
     const userName = form.userName.value;
+    if (userName.length >= 4) {
+      setSuccess({
+        ...success,
+        nameSucc: "✅ Name is valid! Your name meets the required criteria. 🎉",
+      });
+      setError({});
+    } else {
+      setSuccess({});
+      setError({
+        ...error,
+        nameErr:
+          "⚠️ Invalid Name! Please ensure the name is at least 4 characters long... ✨",
+      });
+      return;
+    }
+
+    //
     const userEmail = form.userEmail.value;
     const UserPhotoUrl = form.UserPhotoUrl.value;
     const userPassword = form.userPassword.value;
     const newUserInfo = { userName, userEmail, UserPhotoUrl, userPassword };
-    console.log(newUserInfo);
     //
     registerUsingEmailPass(newUserInfo)
-      .then((result) => {
-        console.log(result);
+      .then(() => {
         updateUserProfile(newUserInfo)
-          .then((result) => {
-            alert("resistered Successfully");
+          .then(() => {
+            Toast.fire({
+              position: "top-end",
+              iconColor: "white",
+              icon: "success",
+              title:
+                "✅ Registration Successful! 🏀 Welcome to the Sports Equipment Store! 🏐🎾",
+            });
+            navigate("/my-equipment-list");
             //  form.reset();
           })
-          .catch((err) => {
-            console.log(err);
-          });
+          .catch(() => {});
       })
       .catch((err) => {
-        console.log(err);
+        Toast.fire({
+          position: "top-end",
+          iconColor: "white",
+          icon: "error",
+          title: `❌ Oops! ${err.message}. Please try again or contact support if the issue persists. 🚨`,
+        });
       });
   };
   //
   const handleGoogleLogin = () => {
-    // 
+    //
     signInWithGoogle()
-    .then(res=>{
-        alert("google login succesfully")
-    }).catch(err=>{
-     alert(err.message)
-    })
+      .then((res) => {
+        Toast.fire({
+          position: "top",
+          iconColor: "white",
+          icon: "success",
+          title: "🌐 Signed in Successfully with Google! ✅ Welcome aboard! 🎉",
+        });
+        navigate("/my-equipment-list");
+      })
+      .catch((err) => {
+        Toast.fire({
+          position: "top-end",
+          iconColor: "white",
+          icon: "error",
+          title: `${err.message}`,
+        });
+      });
+  };
+
+  // url Validation
+  const handleUrlChecker = (e) => {
+    const regexUrl =
+      /^(https?:\/\/)?([a-z0-9-]+\.)+[a-z]{2,6}(\/[a-z0-9\-._~:/?#[\]@!$&'()*+,;=]*)?$/i;
+    const url = e.target.value;
+    setUrl(url);
+    const checkedUrl = regexUrl.test(url);
+    if (checkedUrl) {
+      setSuccess({
+        ...success,
+        urlSucc:
+          "✅ Photo URL is valid! Your image URL is successfully accepted and ready to use. 🖼️✨",
+      });
+      setError({});
+    } else {
+      setSuccess({});
+      setError({
+        ...error,
+        urlErr:
+          "⚠️ Invalid Image URL! Please ensure the URL points to a valid image (e.g., ends with .jpg, .jpeg, .png, .gif, etc.). 🌐📸",
+      });
+    }
+  };
+
+  // password Validation
+  const handlePassValidate = (e) => {
+    const regex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+    const pass = e.target.value;
+    setPassword(pass);
+    const redgPassTest = regex.test(pass);
+    if (redgPassTest) {
+      setSuccess({
+        ...success,
+        passSucc:
+          "✅ Password is valid! Your password meets all the requirements. 🔒",
+      });
+      setError({});
+    } else {
+      setSuccess({});
+      setError({
+        ...error,
+        passErr:
+          "⚠️ Password must contain at least one uppercase letter, one lowercase letter, and be at least 6 characters long. 🔒",
+      });
+    }
   };
   //
   return (
@@ -72,11 +172,20 @@ const Register = () => {
                 Name
               </label>
               <input
-                type="name"
+                type="text"
                 name="userName"
                 placeholder="Enter your name"
                 className="w-full mt-2 px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-500 focus:outline-none"
               />
+              {success?.nameSucc && (
+                <p className="text-green-600 text-xs mt-1 bg-[#484848] rounded-full px-2 inline">
+                  {success?.nameSucc}
+                </p>
+              )}
+
+              {error?.nameErr && (
+                <p className="text-red-700 text-xs mt-1">{error?.nameErr}</p>
+              )}
             </div>
             {/*  */}
             <div>
@@ -87,6 +196,7 @@ const Register = () => {
                 Email
               </label>
               <input
+                required
                 type="email"
                 name="userEmail"
                 placeholder="Enter your email"
@@ -102,11 +212,21 @@ const Register = () => {
                 PhotoURL
               </label>
               <input
-                type="PhotoURL"
+                type="text"
+                defaultValue={url}
                 name="UserPhotoUrl"
                 placeholder="Enter your Photo Url"
                 className="w-full mt-2 px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-500 focus:outline-none"
+                onChange={handleUrlChecker}
               />
+              {success?.urlSucc && (
+                <p className="text-green-600 text-xs mt-1 bg-[#484848] rounded-full px-2 inline">
+                  {success?.urlSucc}
+                </p>
+              )}
+              {error?.urlErr && (
+                <p className="text-red-700 text-xs mt-1">{error?.urlErr}</p>
+              )}
             </div>
             <div>
               <label
@@ -117,12 +237,34 @@ const Register = () => {
               </label>
               <div className="relative">
                 <input
-                  type=""
+                  required
+                  type={!showPass ? "password" : "text"}
+                  value={password}
                   name="userPassword"
                   placeholder="Enter your password"
                   className="w-full mt-2 px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-500 focus:outline-none"
+                  onChange={handlePassValidate}
                 />
+                <button
+                  type="button"
+                  className="absolute right-3 top-4 text-gray-500 hover:text-gray-700 focus:outline-none"
+                >
+                  {showPass ? (
+                    <span onClick={() => setShowPass(false)}>🙈 </span>
+                  ) : (
+                    <span onClick={() => setShowPass(true)}>👁️</span>
+                  )}
+                </button>
               </div>
+              {/*  */}
+              {success?.passSucc && (
+                <p className="text-green-600 text-xs mt-1 bg-[#484848] rounded-full px-2 inline">
+                  {success?.passSucc}
+                </p>
+              )}
+              {error?.passErr && (
+                <p className="text-red-700 text-xs mt-1">{error?.passErr}</p>
+              )}
             </div>
 
             <button

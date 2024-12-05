@@ -1,13 +1,15 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 
 const Login = () => {
-  const { loginUsingEmailPass , signInWithGoogle } = useContext(AuthContext);
+  const { loginUsingEmailPass , signInWithGoogle , Toast } = useContext(AuthContext);
   // state for show hide password
   const [showPass, setShowPass] = useState(false);
+  //
+   const navigate = useNavigate()
   //
   const handleUserLogin = (e) => {
     e.preventDefault();
@@ -16,16 +18,24 @@ const Login = () => {
     const userEmail = form.userEmail.value;
     const userPassword = form.userPassword.value;
     const userLoginInfo = { userEmail, userPassword };
-    console.log(userLoginInfo);
     //
     loginUsingEmailPass(userLoginInfo)
       .then((result) => {
-        console.log(result);
-        alert("login success fully");
+        Toast.fire({
+          position: 'top-end',
+          iconColor: 'white',
+          icon: 'success',
+          title: `✅ Login Successful! Welcome back ${result.user.displayName} 🎉✨`,
+        })
+        navigate("/my-equipment-list")
       })
       .catch((err) => {
-        console.log(err);
-        alert("error on login");
+        Toast.fire({
+          position: 'top-end',
+          iconColor: 'white',
+          icon: 'error',
+          title:`${err.message}`,
+        })
       });
   };
   // handle Google login
@@ -33,9 +43,20 @@ const Login = () => {
     // 
      signInWithGoogle()
      .then(res=>{
-         alert("google login succesfully")
+      Toast.fire({
+        position: 'top',
+        iconColor: 'white',
+        icon: 'success',
+        title: '🌐 Signed in Successfully with Google! ✅ Welcome aboard! 🎉',
+      })
+      
      }).catch(err=>{
-      alert(err.message)
+      Toast.fire({
+        position: 'top-end',
+        iconColor: 'white',
+        icon: 'error',
+        title:`${err.message}`,
+      })
      })
   };
   //
@@ -99,7 +120,7 @@ const Login = () => {
               </label>
               <div className="relative">
                 <input
-                  type={showPass ? "password" : "text"}
+                  type={!showPass ? "password" : "text"}
                   name="userPassword"
                   placeholder="Enter your password"
                   className="w-full mt-2 px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-500 focus:outline-none"
@@ -109,9 +130,9 @@ const Login = () => {
                   className="absolute right-3 top-4 text-gray-500 hover:text-gray-700 focus:outline-none"
                 >
                   {showPass ? (
-                    <span onClick={() => setShowPass(false)}> 👁️</span>
+                    <span onClick={() => setShowPass(false)}>🙈 </span>
                   ) : (
-                    <span onClick={() => setShowPass(true)}>🙈</span>
+                    <span onClick={() => setShowPass(true)}>👁️</span>
                   )}
                 </button>
               </div>

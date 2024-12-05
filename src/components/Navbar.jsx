@@ -5,7 +5,7 @@ import { signOut } from "firebase/auth";
 import { auth } from "../firebase.init";
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  const { user ,  Toast } = useContext(AuthContext);
   //
   const links = (
     <>
@@ -37,10 +37,20 @@ const Navbar = () => {
   const handleSignOut = () => {
     signOut(auth)
       .then((res) => {
-        alert("signOut SuccessFully");
+        Toast.fire({
+          position: 'top-end',
+          iconColor: 'white',
+          icon: 'info',
+          title:'✅ You have successfully signed out! See you next time! 👋',
+        })
       })
       .catch((err) => {
-        console.log(err.message);
+        Toast.fire({
+          position: 'top-end',
+          iconColor: 'white',
+          icon: 'error',
+          title:`${err.message}`,
+        })
       });
   };
   return (
