@@ -2,12 +2,12 @@ import React, { useContext, useState } from "react";
 import { IoCheckmark } from "react-icons/io5";
 import { MdAddToPhotos } from "react-icons/md";
 import { AuthContext } from "../../provider/AuthProvider";
+import { ProductContext } from "../../provider/ProductInfoProvider";
 
 const AddEquipment = () => {
   // context
   const { user } = useContext(AuthContext);
-  //
-  const [AddedProduct, setAddedproduct] = useState(null);
+  const { products, setRefresh } = useContext(ProductContext);
   // state for onchanges
   const [imageUrl, setImageUrl] = useState("");
   // for form submit
@@ -29,23 +29,20 @@ const AddEquipment = () => {
       productCate: form.productCate.value,
       productCustomization: form.customize.value,
     };
-    setAddedproduct(productInfo);
-
     //   fetch for database
-     fetch('http://localhost:5000/add-equipment',{
-         method:"POST",
-         headers:{
-            "Content-type" : "application/json"
-         },
-         body: JSON.stringify(productInfo)
-     })
-     .then( res => res.json())
-     .then(data =>{
-        console.log(data)
-        alert("data added on database")
-     })
-
-
+    fetch("http://localhost:5000/add-equipment", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(productInfo),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        alert("data added on database");
+        setRefresh((prev) => !prev);
+      });
   };
   //
   const handleImage = (e) => {
@@ -63,7 +60,10 @@ const AddEquipment = () => {
           </h1>
           <div className="flex justify-between items-center gap-6">
             <span className="border px-6 py-3 rounded-lg text-lg font-medium">
-              Total Added product : <span>{}</span>
+              Total Added product :{" "}
+              <span>
+                {products.filter((i) => i.userEmail === user?.email).length}
+              </span>
             </span>
             <button className="btn bg-[#9feea7] rounded-full px-6 text-base">
               <IoCheckmark className="text-xl" />
@@ -233,10 +233,18 @@ const AddEquipment = () => {
               {/*  */}
               <div className="h-40 w-full mx-auto bg-[#eeeeee] rounded-lg flex justify-center items-center mb-4">
                 {imageUrl ? (
-                  <img className="w-full h-40 object-cover rounded-md" src={imageUrl} alt="" />
+                  <img
+                    className="w-full h-40 object-cover rounded-md"
+                    src={imageUrl}
+                    alt=""
+                  />
                 ) : (
                   <p className=" text-center text-[#8f8f8f]">
-                    Add link to Show image
+                    Add link to Show image <br />
+                    <span className="text-xs">
+                      {" "}
+                      Add 650 ✖️ 650 image for better user experience
+                    </span>
                   </p>
                 )}
               </div>

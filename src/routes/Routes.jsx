@@ -22,17 +22,16 @@ export const router = createBrowserRouter([
           children:[
             {
                path:'/',
-              element:<Home/>,
-              loader: ()=> fetch('http://localhost:5000/allproduct')
+              element:<Home/>
             },
             {
               path:"/all-sports-equipment",
-              element:<AllSportsEquipment/>,
-              loader: ()=> fetch('http://localhost:5000/allproduct')
+              element:<AllSportsEquipment/>
             },
             {
               path:"/view-details/:id",
-              element:<PrivateRoute><ViewDetails/></PrivateRoute>
+              element:<PrivateRoute><ViewDetails/></PrivateRoute>,
+              loader: ({params})=> fetch(`http://localhost:5000/my-equipment-list/update-product/${params.id}`)
             },
             {
               path:"/add-equipment",

@@ -1,12 +1,15 @@
 
+import { useContext } from 'react';
 import AllProducts from '../components/AllProducts';
-import { useLoaderData } from 'react-router-dom';
+import { ProductContext } from '../provider/ProductInfoProvider';
 
 const Home = () => {
-    const data = useLoaderData();
+    // 
+    const {products} = useContext(ProductContext);
+    // 
     return (
         <div className='w-11/12 mx-auto'>
-            <AllProducts data={data}/>
+            <AllProducts products={products}/>
         </div>
     );
 };

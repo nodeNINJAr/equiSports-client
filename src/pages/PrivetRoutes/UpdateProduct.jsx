@@ -3,55 +3,56 @@ import { IoCheckmark } from "react-icons/io5";
 import { MdAddToPhotos } from "react-icons/md";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
+import { ProductContext } from "../../provider/ProductInfoProvider";
 
 const UpdateProduct = () => {
-    const {user} = useContext(AuthContext)
-    // 
-    const  productData = useLoaderData();
+  const { user } = useContext(AuthContext);
+  const { products, setRefresh } = useContext(ProductContext);
+  //
+  const productData = useLoaderData();
+  // state for onchanges
+  const [imageUrl, setImageUrl] = useState("");
+  // for form submit
+  const handleProductUpdate = (event) => {
+    event.preventDefault();
     //
-    // state for onchanges
-    const [imageUrl, setImageUrl] = useState("");
-    // for form submit
-    const handleProductUpdate = (event) => {
-      event.preventDefault();
-      //
-      const form = event.target;
-      // product information
-      const productInfo = {
-        userName: user?.displayName,
-        userEmail: user?.email,
-        productName: form.productName.value,
-        productDesc: form.productDesc.value,
-        productPrice: form.productPrice.value,
-        productRating: form.productRating.value,
-        ProcessTime: form.ProcessTime.value,
-        StockProduct: form.StockProduct.value,
-        productUrl: imageUrl || productData?.productUrl ,
-        productCate: form.productCate.value,
-        productCustomization: form.customize.value,
-      };
-       
-     ;
-
-     fetch(`http://localhost:5000/my-equipment-list/update-product/${productData?._id}`,{
-         method:"PATCH",
-         headers:{
-            'content-type' : 'application/json'
-         },
-         body: JSON.stringify(productInfo)
-     }).then(res=> res.json())
-     .then(data=>{
-        console.log(data)
-        alert("update-successfully")
-     })
-      
+    const form = event.target;
+    // product information
+    const productInfo = {
+      userName: user?.displayName,
+      userEmail: user?.email,
+      productName: form.productName.value,
+      productDesc: form.productDesc.value,
+      productPrice: form.productPrice.value,
+      productRating: form.productRating.value,
+      ProcessTime: form.ProcessTime.value,
+      StockProduct: form.StockProduct.value,
+      productUrl: imageUrl || productData?.productUrl,
+      productCate: form.productCate.value,
+      productCustomization: form.customize.value,
     };
-    //
-    const handleImage = (e) => {
-      setImageUrl(e.target.value);
-    };
-    //
 
+    fetch(
+      `http://localhost:5000/my-equipment-list/update-product/${productData?._id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(productInfo),
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        alert("update-successfully");
+        setRefresh((prev) => !prev);
+      });
+  };
+  //
+  const handleImage = (e) => {
+    setImageUrl(e.target.value);
+  };
+  //
 
   return (
     <div className="w-11/12 mx-auto font-DMSans tracking-tight py-10">
@@ -59,11 +60,15 @@ const UpdateProduct = () => {
         {/* header */}
         <div className="flex justify-between items-center gap-6">
           <h1 className="text-3xl font-medium font-barlow tracking-wide flex justify-start items-center gap-2">
-            <MdAddToPhotos className="text-2xl" /> <span>Update Exsisting product</span>
+            <MdAddToPhotos className="text-2xl" />{" "}
+            <span>Update Exsisting product</span>
           </h1>
           <div className="flex justify-between items-center gap-6">
             <span className="border px-6 py-3 rounded-lg text-lg font-medium">
-              Total Added product : <span>{}</span>
+              Total Added product :{" "}
+              <span>
+                {products.filter((i) => i.userEmail === user?.email).length}
+              </span>
             </span>
             <button className="btn bg-[#9feea7] rounded-full px-6 text-base">
               <IoCheckmark className="text-xl" />
@@ -114,7 +119,7 @@ const UpdateProduct = () => {
             {/* genarel info */}
             <div className="p-4 bg-[#F9F9F9] rounded-lg">
               <h1 className="text-xl font-semibold font-barlow tracking-normal capitalize ">
-               Generel information
+                Generel information
               </h1>
               {/*  */}
               <label className="form-control w-full mb-3">
