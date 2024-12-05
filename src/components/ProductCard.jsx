@@ -3,10 +3,11 @@ import { AiFillEdit } from "react-icons/ai";
 import { MdDeleteForever } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { ProductContext } from "../provider/ProductInfoProvider";
+import Swal from "sweetalert2";
 
-const ProductCard = ({ product, uniqueProduct , rProduct }) => {
-  // 
-  const { products, setProducts} = useContext(ProductContext)
+const ProductCard = ({ product, uniqueProduct, rProduct }) => {
+  //
+  const { products, setProducts } = useContext(ProductContext);
   //
   const {
     _id,
@@ -21,15 +22,34 @@ const ProductCard = ({ product, uniqueProduct , rProduct }) => {
   } = product || uniqueProduct || rProduct;
 
   const handleDelete = (id) => {
-    // product delete from database
-    fetch(`http://localhost:5000/allproduct/${id}`, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        alert("product deleted");
-        setProducts(products.filter((item) => item._id !== id));
-      });
+    //
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // product delete from database
+        fetch(`http://localhost:5000/allproduct/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount === 1) {
+              setProducts(products.filter((item) => item._id !== id));
+              Swal.fire({
+                title: "Deleted!",
+                text: "🗑️ Product Deleted Successfully! 🚫",
+                icon: "success",
+              });
+            }
+          });
+      }
+    });
   };
 
   //
@@ -78,14 +98,21 @@ const ProductCard = ({ product, uniqueProduct , rProduct }) => {
         <div className="font-bold text-xl mb-2 whitespace-nowrap overflow-ellipsis overflow-hidden">
           {productName}
         </div>
-       {
-        rProduct ? <div className="flex justify-between items-center gap-4"><p># {productCate}</p> <p><strong>{StockProduct} </strong>Product In stock </p> </div> : <p
-         title={productDesc}
-         className="text-gray-700 text-base whitespace-nowrap overflow-ellipsis overflow-hidden"
-       >
-         {productDesc}
-       </p>
-       }
+        {rProduct ? (
+          <div className="flex justify-between items-center gap-4">
+            <p># {productCate}</p>{" "}
+            <p>
+              <strong>{StockProduct} </strong>Product In stock{" "}
+            </p>{" "}
+          </div>
+        ) : (
+          <p
+            title={productDesc}
+            className="text-gray-700 text-base whitespace-nowrap overflow-ellipsis overflow-hidden"
+          >
+            {productDesc}
+          </p>
+        )}
         <div className="flex justify-between items-center pt-4">
           <p className="text-gray-900 text-xl font-bold">
             ${Number(productPrice).toFixed(2)}

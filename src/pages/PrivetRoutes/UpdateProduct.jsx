@@ -4,7 +4,9 @@ import { MdAddToPhotos } from "react-icons/md";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import { ProductContext } from "../../provider/ProductInfoProvider";
+import Swal from "sweetalert2";
 
+//
 const UpdateProduct = () => {
   const { user } = useContext(AuthContext);
   const { products, setRefresh } = useContext(ProductContext);
@@ -32,21 +34,47 @@ const UpdateProduct = () => {
       productCustomization: form.customize.value,
     };
 
-    fetch(
-      `http://localhost:5000/my-equipment-list/update-product/${productData?._id}`,
-      {
-        method: "PATCH",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(productInfo),
+    //
+    Swal.fire({
+      title: "Are you sure?",
+      text: "⚠️ Warning: Updating this will change the existing data. Proceed with caution! 🔄",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Update it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(
+          `http://localhost:5000/my-equipment-list/update-product/${productData?._id}`,
+          {
+            method: "PATCH",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(productInfo),
+          }
+        )
+          .then((res) => res.json())
+          .then((data) => {
+
+            if(data.modifiedCount ===1 ){
+              Swal.fire({
+                title: "Updated!",
+                text: "✅ Product Updated Successfully! 🔄",
+                icon: "success"
+              });
+              setRefresh((prev) => !prev);
+            }else{
+              Swal.fire({
+                title: "Not Updated!",
+                text: "✏️ Please provide the updated value to update the product! 🛠️",
+                icon: "info"
+              });
+            }
+          });
       }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        alert("update-successfully");
-        setRefresh((prev) => !prev);
-      });
+    });
   };
   //
   const handleImage = (e) => {

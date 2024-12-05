@@ -3,13 +3,17 @@ import { IoCheckmark } from "react-icons/io5";
 import { MdAddToPhotos } from "react-icons/md";
 import { AuthContext } from "../../provider/AuthProvider";
 import { ProductContext } from "../../provider/ProductInfoProvider";
+import Swal from "sweetalert2";
 
+//
 const AddEquipment = () => {
   // context
   const { user } = useContext(AuthContext);
   const { products, setRefresh } = useContext(ProductContext);
   // state for onchanges
   const [imageUrl, setImageUrl] = useState("");
+  const [productName, setProductName] = useState("");
+  //
   // for form submit
   const handleProductAdd = (event) => {
     event.preventDefault();
@@ -19,7 +23,7 @@ const AddEquipment = () => {
     const productInfo = {
       userName: user?.displayName,
       userEmail: user?.email,
-      productName: form.productName.value,
+      productName: productName,
       productDesc: form.productDesc.value,
       productPrice: form.productPrice.value,
       productRating: form.productRating.value,
@@ -29,27 +33,59 @@ const AddEquipment = () => {
       productCate: form.productCate.value,
       productCustomization: form.customize.value,
     };
-    //   fetch for database
-    fetch("http://localhost:5000/add-equipment", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(productInfo),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        alert("data added on database");
-        setRefresh((prev) => !prev);
+    // find exixting product
+    const existingProduct = products.find((i) => i.productName === productName);
+    //
+    if (
+      productInfo?.productName.length >= 6 &&
+      productInfo?.productUrl &&
+      !existingProduct
+    ) {
+      //   fetch for database
+      fetch("http://localhost:5000/add-equipment", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(productInfo),
+      })
+        .then((res) => res.json())
+        .then(() => {
+          //fancy alert
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "🎉New Product Added Successfully! 🛒✨",
+            showConfirmButton: false,
+            timer: 2000,
+          });
+          // for side effect
+          setRefresh((prev) => !prev);
+        });
+      return;
+    } else if (existingProduct) {
+      Swal.fire({
+        title: "Product Already Exists!",
+        text: "⚠️ Warning: This Named product already exists in the database. Please check and try again with a different product. 🔄",
+        icon: "warning",
       });
+      return;
+    } else {
+      Swal.fire({
+        title: "Add Product Guidelines?",
+        text: "🚨 Friendly Reminder: Please provide a product name with at least 6 characters and a valid image link to add a new product. 😊",
+        icon: "info",
+      });
+    }
   };
-  //
+  // func for get onchanges data
   const handleImage = (e) => {
     setImageUrl(e.target.value);
   };
+  const handleName = (e) => {
+    setProductName(e.target.value);
+  };
   //
-
   return (
     <div className="w-11/12 mx-auto font-DMSans tracking-tight py-10">
       <form onSubmit={handleProductAdd}>
@@ -128,6 +164,7 @@ const AddEquipment = () => {
                   name="productName"
                   placeholder="Enter Product Name"
                   className="input  w-full bg-[#eeeeee] "
+                  onChange={handleName}
                 />
               </label>
               {/*  */}
