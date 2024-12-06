@@ -1,13 +1,14 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../provider/AuthProvider';
 import { Navigate } from 'react-router-dom';
+import Loader from '../../components/Loader';
 
 const PrivateRoute = ({children}) => {
- const {user , loader } = useContext(AuthContext);
+ const {user , loader, loaderP } = useContext(AuthContext);
 
 //  
-if(loader){
-  return <h1>loadeing</h1>
+if(loader || loaderP){
+  return <Loader/>
 }
   //   
  if(user){

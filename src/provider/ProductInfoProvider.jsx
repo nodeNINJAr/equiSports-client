@@ -8,11 +8,15 @@ const ProductInfoProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [refresh , setRefresh] = useState(false);
   //    
+  // 
+  const [loaderP , setLoaderP] = useState(true);
+  // 
   useEffect(() => {
     fetch("http://localhost:5000/allproduct")
       .then((res) => res.json())
       .then((data) => {
         setProducts(Array.isArray(data) ? data : []);
+        setLoaderP(false)
       });
     
   }, [refresh]);
@@ -23,7 +27,9 @@ const ProductInfoProvider = ({ children }) => {
   const productInfo = {
     products,
     setProducts,
-    setRefresh
+    setRefresh,
+    loaderP,
+    setLoaderP
   };
 
   return (

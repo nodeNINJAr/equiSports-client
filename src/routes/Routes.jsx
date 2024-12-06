@@ -12,12 +12,13 @@ import PrivateRoute from '../pages/PrivetRoutes/PrivateRoute'
 import ViewDetails from '../pages/PrivetRoutes/ViewDetails';
 import UpdateProduct from '../pages/PrivetRoutes/UpdateProduct';
 import Page404 from '../pages/Page404';
+import ErrorPage from '../pages/ErrorPage';
 
 // 
 export const router = createBrowserRouter([
         {
           path: "/",
-          errorElement:<h1>Errroo happnaing</h1>,
+          errorElement:<ErrorPage/>,
           element: <Root/>,
           children:[
             {

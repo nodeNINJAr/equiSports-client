@@ -18,8 +18,8 @@ const Login = () => {
     const userEmail = form.userEmail.value;
     const userPassword = form.userPassword.value;
     const userLoginInfo = { userEmail, userPassword };
-    //
-    loginUsingEmailPass(userLoginInfo)
+    if(userEmail && userPassword ){
+      loginUsingEmailPass(userLoginInfo)
       .then((result) => {
         Toast.fire({
           position: 'top-end',
@@ -36,7 +36,16 @@ const Login = () => {
           icon: 'error',
           title:`${err.message}`,
         })
-      });
+       return
+    })
+    }else{
+      Toast.fire({
+        position: 'top-end',
+        iconColor: 'white',
+        icon: 'error',
+        title:"⚠️ Email and Password are required! Please fill in the missing fields. ✏️",
+      })
+    }
   };
   // handle Google login
   const handleGoogleLogin = () => {
@@ -49,6 +58,7 @@ const Login = () => {
         icon: 'success',
         title: '🌐 Signed in Successfully with Google! ✅ Welcome aboard! 🎉',
       })
+      navigate("/my-equipment-list")
       
      }).catch(err=>{
       Toast.fire({

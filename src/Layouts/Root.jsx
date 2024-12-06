@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Outlet} from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
+import Loader from "../components/Loader";
 
 // 
 const Root = () => {
@@ -12,7 +13,7 @@ const Root = () => {
   return (
     <div className="container mx-auto">
       {loader ? (
-        "loading"
+        <Loader/>
       ) : (
         <>
           {/* Navbar */}
