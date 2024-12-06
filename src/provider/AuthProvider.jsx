@@ -38,7 +38,9 @@ useEffect(()=>{
       //   
       if(currentUser){
           setUser(currentUser);
-          setLoader(false)
+          setTimeout(() => {
+            setLoader(false)
+          }, 2000);
 
       }
       else{

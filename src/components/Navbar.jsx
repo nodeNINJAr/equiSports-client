@@ -3,7 +3,6 @@ import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase.init";
-import { Slide } from "react-awesome-reveal";
 
 
 const Navbar = () => {
@@ -56,7 +55,6 @@ const Navbar = () => {
       });
   };
   return (
-    <Slide direction="down" delay={50} duration={1000}>
       <div className="navbar py-6 bg-white">
         <div className="navbar-start">
           <div className="dropdown">
@@ -117,7 +115,7 @@ const Navbar = () => {
           )}
         </div>
       </div>
-    </Slide>
+   
   );
 };
 

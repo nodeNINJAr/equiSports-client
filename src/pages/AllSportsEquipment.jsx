@@ -81,6 +81,10 @@ const AllSportsEquipment = () => {
                   <MdOutlineKeyboardArrowUp />
                 </div>
                 <span
+                  data-tooltip-id="my-tooltip-3"
+                  data-tooltip-content={
+                    "For Default Value click on Sort Button"
+                  }
                   className={
                     active
                       ? "absolute top-12 left-0 bg-slate-400 w-32 px-2 py-2 rounded-lg z-50 text-lg transition-all ease-in-out duration-300 capitalize"

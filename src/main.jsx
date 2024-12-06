@@ -20,5 +20,6 @@ createRoot(document.getElementById("root")).render(
     </AuthProvider>
     <Tooltip id="my-tooltip-1" place="left" variant="info" delayShow={200} delayHide={200} />
     <Tooltip id="my-tooltip-2" place="bottom" variant="dark" delayShow={200} delayHide={200} />
+    <Tooltip id="my-tooltip-3" place="right" variant="dark" delayShow={400}  />
   </StrictMode>
 );
