@@ -4,13 +4,17 @@ import { AuthContext } from "../../provider/AuthProvider";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { Fade } from "react-awesome-reveal";
+import Lottie from "lottie-react";
+import successIcon from "../../assets/lottie/mainScene.json"
+import loginErrorIcon from "../../assets/lottie/loginError.json"
 
 const Login = () => {
   const { loginUsingEmailPass, signInWithGoogle, Toast } =
     useContext(AuthContext);
   // state for show hide password
   const [showPass, setShowPass] = useState(false);
-  //
+  const [success , setSuccess ] = useState("")
+  // 
   const navigate = useNavigate();
   //
   const handleUserLogin = (e) => {
@@ -23,15 +27,19 @@ const Login = () => {
     if (userEmail && userPassword) {
       loginUsingEmailPass(userLoginInfo)
         .then((result) => {
+          setSuccess("succ")
           Toast.fire({
             position: "top-end",
             iconColor: "white",
             icon: "success",
             title: `✅ Login Successful! Welcome back ${result.user.displayName} 🎉✨`,
           });
-          navigate("/my-equipment-list");
+          setTimeout(() => {
+            navigate("/my-equipment-list");
+          }, 2200);
         })
         .catch((err) => {
+          setSuccess("err")
           Toast.fire({
             position: "top-end",
             iconColor: "white",
@@ -41,6 +49,7 @@ const Login = () => {
           return;
         });
     } else {
+      setSuccess("err")
       Toast.fire({
         position: "top-end",
         iconColor: "white",
@@ -163,9 +172,9 @@ const Login = () => {
               </div>
               <button
                 type="submit"
-                className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300"
+                className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-300 focus:outline-none focus:ring focus:ring-blue-300 flex justify-center items-center gap-2 "
               >
-                Log In
+               {success==="succ" && <Lottie animationData={successIcon} loop={false} style={{width:30, height:30}}/>} {success ==="err" && <Lottie animationData={loginErrorIcon} loop={true} style={{width:30, height:30}}/> } Log In
               </button>
             </form>
             <p className="text-center text-[#ffffffb2] text-sm mt-4">

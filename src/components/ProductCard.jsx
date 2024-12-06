@@ -1,15 +1,17 @@
 import React, { useContext } from "react";
-import { AiFillEdit } from "react-icons/ai";
-import { MdDeleteForever } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { ProductContext } from "../provider/ProductInfoProvider";
 import Swal from "sweetalert2";
-import { Fade, Slide } from "react-awesome-reveal";
-
+import { Fade } from "react-awesome-reveal";
+import Lottie from "lottie-react";
+import deleteIcon from "../assets/lottie/deleteForever.json"
+import UpdateIcon from "../assets/lottie/newUpdate (1).json"
+import detailsIcon from "../assets/lottie/details.json"
+// 
 const ProductCard = ({ product, uniqueProduct, rProduct }) => {
   //
   const { products, setProducts } = useContext(ProductContext);
-  //
+  // 
   const {
     _id,
     productUrl,
@@ -67,7 +69,7 @@ const ProductCard = ({ product, uniqueProduct, rProduct }) => {
                   <Link to={`/my-equipment-list/update-product/${_id}`}>
                     {" "}
                     <button className="w-full h-full text-white font-normal font-barlow tracking-normal text-lg flex justify-center items-center gap-1 ">
-                      <AiFillEdit /> Update
+                      <Lottie animationData={UpdateIcon} loop={true} style={{width:30, height:30}}/> Update
                     </button>
                   </Link>
                 </div>
@@ -75,9 +77,9 @@ const ProductCard = ({ product, uniqueProduct, rProduct }) => {
                   {" "}
                   <button
                     onClick={() => handleDelete(_id)}
-                    className="w-full h-full text-white transition-all ease-in-out duration-200 hover:text-black font-medium font-barlow tracking-widest text-lg flex justify-center items-center gap-1 "
+                    className="w-full h-full text-white transition-all ease-in-out duration-200 hover:text-black font-medium font-barlow tracking-widest text-lg flex justify-center items-center gap-1 px-3 "
                   >
-                    Delete <MdDeleteForever />
+                    Delete <Lottie animationData={deleteIcon} loop={true} style={{width:25, height:25}}/>
                   </button>
                 </div>{" "}
               </>
@@ -91,8 +93,8 @@ const ProductCard = ({ product, uniqueProduct, rProduct }) => {
               {" "}
               <Link to={`/view-details/${_id}`}>
                 {" "}
-                <button className="w-full h-full text-white font-semibold font-barlow tracking-widest text-lg ">
-                  View Details
+                <button className="w-full h-full text-white font-semibold font-barlow tracking-widest text-lg flex justify-center items-center gap-2">
+                View Details <Lottie animationData={detailsIcon} loop={true} style={{width:30, height:30}} />
                 </button>
               </Link>
             </div>{" "}

@@ -4,6 +4,9 @@ import { AuthContext } from "../../provider/AuthProvider";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { Fade } from "react-awesome-reveal";
+import Lottie from "lottie-react";
+import successIcon from "../../assets/lottie/mainScene.json"
+import loginErrorIcon from "../../assets/lottie/loginError.json"
 
 const Register = () => {
   //
@@ -23,6 +26,8 @@ const Register = () => {
   const [url, setUrl] = useState("");
   //
   const [showPass, setShowPass] = useState(false);
+  // 
+  const [lottie , setLottie ] = useState("")
   //
   const navigate = useNavigate();
   const handleRegister = (e) => {
@@ -54,6 +59,7 @@ const Register = () => {
     //
     registerUsingEmailPass(newUserInfo)
       .then(() => {
+        setLottie("succ")
         updateUserProfile(newUserInfo)
           .then(() => {
             Toast.fire({
@@ -63,12 +69,15 @@ const Register = () => {
               title:
                 "✅ Registration Successful! 🏀 Welcome to the Sports Equipment Store! 🏐🎾",
             });
-            navigate("/my-equipment-list");
+            setTimeout(() => {
+              navigate("/my-equipment-list");
+            }, 2200);
             //  form.reset();
           })
           .catch(() => {});
       })
       .catch((err) => {
+        setLottie("err")
         Toast.fire({
           position: "top-end",
           iconColor: "white",
@@ -271,9 +280,9 @@ const Register = () => {
 
               <button
                 type="submit"
-                className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300"
+                className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-300 focus:outline-none focus:ring focus:ring-blue-300 flex justify-center items-center gap-2"
               >
-                Register
+                 {lottie ==="succ" && <Lottie animationData={successIcon} loop={false} style={{width:30, height:30}}/>} {lottie ==="err" && <Lottie animationData={loginErrorIcon} loop={true} style={{width:30, height:30}}/> } Register
               </button>
             </form>
             <p className="text-center text-[#ffffffb2] text-sm mt-4">

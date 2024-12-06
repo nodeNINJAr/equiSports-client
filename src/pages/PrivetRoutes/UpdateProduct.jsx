@@ -5,9 +5,11 @@ import { AuthContext } from "../../provider/AuthProvider";
 import { ProductContext } from "../../provider/ProductInfoProvider";
 import Swal from "sweetalert2";
 import Hero from "../../components/Hero";
-import { GrUpdate } from "react-icons/gr";
 import { Fade, Slide } from "react-awesome-reveal";
-
+import Lottie from "lottie-react";
+import update from "../../assets/lottie/update2.json"
+import successIcon from "../../assets/lottie/uploadComplete.json"
+import errorIcon from "../../assets/lottie/loginError.json"
 //
 const UpdateProduct = () => {
   const { user } = useContext(AuthContext);
@@ -16,6 +18,8 @@ const UpdateProduct = () => {
   const productData = useLoaderData();
   // state for onchanges
   const [imageUrl, setImageUrl] = useState("");
+  // 
+  const [lottie , setLottie ] = useState("")
   // for form submit
   const handleProductUpdate = (event) => {
     event.preventDefault();
@@ -66,12 +70,14 @@ const UpdateProduct = () => {
                 icon: "success",
               });
               setRefresh((prev) => !prev);
+              setLottie("succ")
             } else {
               Swal.fire({
                 title: "Not Updated!",
                 text: "✏️ Please provide the updated value to update the product! 🛠️",
                 icon: "info",
               });
+              setLottie("err")
             }
           });
       }
@@ -94,7 +100,7 @@ const UpdateProduct = () => {
           <Slide direction="down" duration={1500}>
             <div className="flex justify-between items-center gap-6 flex-wrap ">
               <h1 className="text-3xl font-medium font-barlow tracking-wide flex justify-start items-center gap-2">
-                <GrUpdate className="text-2xl" />
+                <Lottie animationData={update} loop={true} style={{width:30, height:30}} />
                 <span>Update Exsisting product</span>
               </h1>
               <div className="flex justify-between items-center gap-6 flex-wrap">
@@ -105,8 +111,7 @@ const UpdateProduct = () => {
                   </span>
                 </span>
                 <button className="btn bg-[#9feea7] rounded-full px-6 text-base">
-                  <IoCheckmark className="text-xl" />
-                  Update Product
+                  {lottie ==="succ" && <Lottie animationData={successIcon} loop={false} style={{width:40, height:40}}/>} {lottie ==="err" && <Lottie animationData={errorIcon} loop={true} style={{width:30, height:30}}/> } {lottie === "" && <Lottie animationData={successIcon} loop={false} style={{width:40, height:40}}/>} Update Product
                 </button>
               </div>
             </div>

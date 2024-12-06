@@ -1,12 +1,14 @@
 import React, { useContext, useState } from "react";
-import { IoCheckmark } from "react-icons/io5";
 import { MdAddToPhotos } from "react-icons/md";
 import { AuthContext } from "../../provider/AuthProvider";
 import { ProductContext } from "../../provider/ProductInfoProvider";
 import Swal from "sweetalert2";
 import Hero from "../../components/Hero";
 import { Fade, Slide } from "react-awesome-reveal";
-
+import Lottie from "lottie-react";
+import addProduct from "../../assets/lottie/add.json"
+import successIcon from "../../assets/lottie/uploadComplete.json"
+import errorIcon from "../../assets/lottie/loginError.json"
 //
 const AddEquipment = () => {
   // context
@@ -15,6 +17,8 @@ const AddEquipment = () => {
   // state for onchanges
   const [imageUrl, setImageUrl] = useState("");
   const [productName, setProductName] = useState("");
+  // 
+  const [lottie , setLottie ] = useState("")
   //
   // for form submit
   const handleProductAdd = (event) => {
@@ -38,11 +42,7 @@ const AddEquipment = () => {
     // find exixting product
     const existingProduct = products.find((i) => i.productName === productName);
     //
-    if (
-      productInfo?.productName.length >= 6 &&
-      productInfo?.productUrl &&
-      !existingProduct
-    ) {
+    if ( productInfo?.productName.length >= 6 && productInfo?.productUrl && !existingProduct) {
       //   fetch for database
       fetch("http://localhost:5000/add-equipment", {
         method: "POST",
@@ -53,6 +53,7 @@ const AddEquipment = () => {
       })
         .then((res) => res.json())
         .then(() => {
+          setLottie("succ");
           //fancy alert
           Swal.fire({
             position: "center",
@@ -66,6 +67,7 @@ const AddEquipment = () => {
         });
       return;
     } else if (existingProduct) {
+      setLottie("err");
       Swal.fire({
         title: "Product Already Exists!",
         text: "⚠️ Warning: This Named product already exists in the database. Please check and try again with a different product. 🔄",
@@ -73,6 +75,7 @@ const AddEquipment = () => {
       });
       return;
     } else {
+      setLottie("err");
       Swal.fire({
         title: "Add Product Guidelines?",
         text: "🚨 Friendly Reminder: Please provide a product name with at least 6 characters and a valid image link to add a new product. 😊",
@@ -99,8 +102,8 @@ const AddEquipment = () => {
           {/* header */}
           <Slide direction="down">
             <div className="flex justify-between items-center gap-6">
-              <h1 className="text-3xl font-medium font-barlow tracking-wide flex justify-start items-center gap-2">
-                <MdAddToPhotos className="text-2xl" />{" "}
+              <h1 className="text-3xl font-medium font-barlow tracking-wide flex justify-start items-center">
+              <Lottie animationData={addProduct} loop={true} style={{width:60, height:50}} />
                 <span>Add New product</span>
               </h1>
               <div className="flex justify-between items-center gap-6">
@@ -111,8 +114,7 @@ const AddEquipment = () => {
                   </span>
                 </span>
                 <button className="btn bg-[#9feea7] rounded-full px-6 text-base">
-                  <IoCheckmark className="text-xl" />
-                  Add Product
+                  {lottie ==="succ" && <Lottie animationData={successIcon} loop={false} style={{width:40, height:40}}/>} {lottie ==="err" && <Lottie animationData={errorIcon} loop={true} style={{width:30, height:30}}/> } {lottie === "" && <Lottie animationData={successIcon} loop={false} style={{width:40, height:40}}/>} Add Product
                 </button>
               </div>
             </div>

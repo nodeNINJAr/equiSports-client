@@ -8,7 +8,6 @@ const ProductInfoProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [refresh , setRefresh] = useState(false);
   //    
-  // 
   const [loaderP , setLoaderP] = useState(true);
   // 
   useEffect(() => {
@@ -16,7 +15,7 @@ const ProductInfoProvider = ({ children }) => {
       .then((res) => res.json())
       .then((data) => {
         setProducts(Array.isArray(data) ? data : []);
-        setLoaderP(false)
+        setLoaderP(false);
       });
     
   }, [refresh]);
