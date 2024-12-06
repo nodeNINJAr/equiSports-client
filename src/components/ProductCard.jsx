@@ -98,7 +98,8 @@ const ProductCard = ({ product, uniqueProduct, rProduct }) => {
             </div>{" "}
           </div>
           <div className="py-4 relative">
-            <div className="font-bold text-xl mb-2 whitespace-nowrap overflow-ellipsis overflow-hidden">
+            <div data-tooltip-id="my-tooltip-2"
+          data-tooltip-content={productName} className="font-bold text-xl mb-2 whitespace-nowrap overflow-ellipsis overflow-hidden">
               {productName}
             </div>
             {rProduct ? (

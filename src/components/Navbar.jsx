@@ -5,6 +5,7 @@ import { signOut } from "firebase/auth";
 import { auth } from "../firebase.init";
 import { Slide } from "react-awesome-reveal";
 
+
 const Navbar = () => {
   const { user, Toast } = useContext(AuthContext);
   //
@@ -98,7 +99,7 @@ const Navbar = () => {
                 className="rounded-full border-2 border-slate-300 w-12 h-12 mr-4 cursor-alias"
                 src={user?.photoURL}
                 alt={`${user?.displayName} "pics"`}
-                title={user?.displayName}
+                data-tooltip-id="my-tooltip-1"  data-tooltip-content={user?.displayName}
               />
               <Link onClick={handleSignOut} to="/" className="btn">
                 Log Out

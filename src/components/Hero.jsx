@@ -6,7 +6,8 @@ const Hero = ({ title, path }) => {
     <div className="flex justify-between w-11/12 mx-auto flex-wrap md:flex-nowrap">
       <Slide duration={2000} direction="left">
         <h1
-          title={title}
+          data-tooltip-id="my-tooltip-2"
+          data-tooltip-content={title}
           className="text-2xl font-DMSans uppercase font-semibold whitespace-nowrap text-ellipsis overflow-hidden"
         >
           {title}
@@ -14,7 +15,8 @@ const Hero = ({ title, path }) => {
       </Slide>
       <Slide duration={2000} direction="right">
         <p
-          title={path}
+          data-tooltip-id="my-tooltip-2"
+          data-tooltip-content={path}
           className="text-lg font-normal font-DMSans tracking-tight text-[#575757] whitespace-nowrap text-ellipsis overflow-hidden"
         >
           Home{path}
