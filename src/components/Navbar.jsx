@@ -59,8 +59,8 @@ const Navbar = () => {
   return (
     <div
       className={`${
-        location.pathname === "/" ? darkMode && "bg-[#23272F]" : "bg-white"
-      } navbar py-6 bg-white`}
+        location.pathname === "/" ? darkMode ? "bg-[#23272F]" : "bg-white" : "bg-white"
+      } navbar py-6`}
     >
       <div className="navbar-start">
         <div className="dropdown">

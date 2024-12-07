@@ -24,7 +24,7 @@ const ViewDetails = () => {
   return (
     <>
       <div className="py-4 border-y my-10 ">
-        <Hero title={productName} path={location?.pathname} />
+        <Hero title={"Product Details"} path={location?.pathname} />
       </div>
       {/*  */}
       <Fade delay={200} duration={1500}>

@@ -22,18 +22,20 @@ const Register = () => {
   } = useContext(AuthContext);
   //
   const [password, setPassword] = useState();
+  const [testedPass, setTestedPass] = useState();
   //
   const [url, setUrl] = useState("");
   //
   const [showPass, setShowPass] = useState(false);
   // 
-  const [lottie , setLottie ] = useState("")
+  const [lottie , setLottie ] = useState("");
   //
   const navigate = useNavigate();
   const handleRegister = (e) => {
     e.preventDefault();
     //
     const form = e.target;
+    // 
     const userName = form.userName.value;
     if (userName.length >= 4) {
       setSuccess({
@@ -55,6 +57,18 @@ const Register = () => {
     const userEmail = form.userEmail.value;
     const UserPhotoUrl = form.UserPhotoUrl.value;
     const userPassword = form.userPassword.value;
+    if(!testedPass){
+      Toast.fire({
+       position: "top-end",
+       iconColor: "white",
+       icon: "error",
+       title: `❌ Please Provide a valid password `,
+     });
+     return
+   
+   }
+
+  //  userinfo
     const newUserInfo = { userName, userEmail, UserPhotoUrl, userPassword };
     //
     registerUsingEmailPass(newUserInfo)
@@ -123,6 +137,7 @@ const Register = () => {
           "✅ Photo URL is valid! Your image URL is successfully accepted and ready to use. 🖼️✨",
       });
       setError({});
+      return
     } else {
       setSuccess({});
       setError({
@@ -131,6 +146,7 @@ const Register = () => {
           "⚠️ Invalid Image URL! Please ensure the URL points to a valid image (e.g., ends with .jpg, .jpeg, .png, .gif, etc.). 🌐📸",
       });
     }
+    return
   };
 
   // password Validation
@@ -139,6 +155,7 @@ const Register = () => {
     const pass = e.target.value;
     setPassword(pass);
     const redgPassTest = regex.test(pass);
+    setTestedPass(redgPassTest)
     if (redgPassTest) {
       setSuccess({
         ...success,
