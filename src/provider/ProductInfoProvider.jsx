@@ -10,6 +10,20 @@ const ProductInfoProvider = ({ children }) => {
   //    
   const [loaderP , setLoaderP] = useState(true);
   // 
+   //
+   const [darkMode, setDarkMode] = useState(() => {
+    return localStorage.getItem("darkMode") === "true";
+  });
+  //
+  const darkModeToggle = () => {
+    setDarkMode((prevMode) => {
+      localStorage.setItem("darkMode", !prevMode);
+      return !prevMode;
+    });
+  };
+
+  // useEffect(() => {}, [darkMode]);
+
   useEffect(() => {
     fetch("http://localhost:5000/allproduct")
       .then((res) => res.json())
@@ -18,7 +32,7 @@ const ProductInfoProvider = ({ children }) => {
         setLoaderP(false);
       });
     
-  }, [refresh]);
+  }, [refresh,,darkMode]);
 
 // 
 
@@ -28,7 +42,9 @@ const ProductInfoProvider = ({ children }) => {
     setProducts,
     setRefresh,
     loaderP,
-    setLoaderP
+    setLoaderP,
+    darkModeToggle,
+    darkMode
   };
 
   return (

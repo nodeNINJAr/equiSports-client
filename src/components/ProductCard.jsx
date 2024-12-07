@@ -10,7 +10,7 @@ import detailsIcon from "../assets/lottie/details.json"
 // 
 const ProductCard = ({ product, uniqueProduct, rProduct }) => {
   //
-  const { products, setProducts } = useContext(ProductContext);
+  const { products, setProducts , darkMode } = useContext(ProductContext);
   // 
   const {
     _id,
@@ -59,7 +59,7 @@ const ProductCard = ({ product, uniqueProduct, rProduct }) => {
   return (
     <>
       <Fade delay={200} duration={1500}>
-        <div className="box-border overflow-hidden group  hover:border border-slate-200 hover:px-3 hover:pt-3 transition-all ease-in-out duration-300 rounded-sm ">
+        <div className="box-border overflow-hidden group  hover:border border-slate-200 hover:px-3 hover:pt-3 transition-all ease-in-out duration-300 rounded-sm">
           {" "}
           <div className="relative rounded-sm ">
             {uniqueProduct && (
@@ -114,13 +114,13 @@ const ProductCard = ({ product, uniqueProduct, rProduct }) => {
             ) : (
               <p
                 title={productDesc}
-                className="text-gray-700 text-base whitespace-nowrap overflow-ellipsis overflow-hidden"
+                className="text-base whitespace-nowrap overflow-ellipsis overflow-hidden"
               >
                 {productDesc}
               </p>
             )}
             <div className="flex justify-between items-center pt-4">
-              <p className="text-gray-900 text-xl font-bold">
+              <p className="text-xl font-bold">
                 ${Number(productPrice).toFixed(2)}
               </p>
               <div className="flex items-center">
