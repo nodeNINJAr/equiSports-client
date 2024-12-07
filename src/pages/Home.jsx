@@ -5,6 +5,7 @@ import Loader from "../components/Loader";
 import { FaCheckCircle } from "react-icons/fa";
 import { Slide } from "react-awesome-reveal";
 import { Link } from "react-router-dom";
+import SwiperSlider from "../components/SwiperSlider";
 
 const Home = () => {
   //
@@ -17,7 +18,21 @@ const Home = () => {
           <Loader />
         ) : (
           <>
-            <div className="w-11/12 mx-auto">
+            {/* slider */}
+            <div className={darkMode&&"bg-[#2838366d]"}>
+              <SwiperSlider />
+            </div>
+
+            {/*  */}
+            <div className="w-11/12 mx-auto py-20">
+              <Slide direction="down">
+                <>
+                  <h3 className="text-center text-4xl uppercase font-semibold mb-4">
+                    Featured Products
+                  </h3>
+                  <p className=" w-12 h-1 mx-auto bg-[#EC3D08] mb-20"></p>
+                </>
+              </Slide>
               <AllProducts products={products} />
               {/* About us section */}
               <div className="flex flex-col md:flex-row items-center lg:items-start lg:justify-between py-16  md:pb-40 sm:pt-20 gap-8">
