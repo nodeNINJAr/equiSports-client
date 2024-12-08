@@ -1,8 +1,30 @@
-# React + Vite
+# Projects Name: EquiSports: (A Sports Equipment Store)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+## Website live link:
+[Link -1(firebase)](https://choosealicense.com/licenses/mit/) 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[Link -2(netlify)](https://equisportseu.netlify.app/)
+
+
+
+## Key features :
+* Users will fill excellent ui experience
+* Users can create an account that authenticates it through Firebase.
+* Logged in users can add products to this websites.
+* Logged in users can delete and update their added products.
+* Users can sort products by price and rating.
+* Logged in users can view product details.
+* **Many more features will be added in futures**
+
+## Technology Uses :
+
+* react js
+* express js
+* mongoDB
+* firebase
+
+
+## Developer
+
+[gitHub](https://github.com/web-dev-mehedi/)

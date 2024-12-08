@@ -43,14 +43,14 @@ const Home = () => {
                   <Slide direction="left" duration={1500}>
                     <div className="relative">
                       <img
-                        src="https://via.placeholder.com/300x400"
-                        alt="Main Fitness"
-                        className="rounded-lg shadow-lg h-[280px] sm:h-96 md:h-[320px]  lg:h-[380px] xl:h-[500px] w-2/3"
+                        src="https://i.ibb.co.com/1M80fvn/1-3.jpg"
+                        alt="Woman with bat"
+                        className="rounded-lg shadow-lg h-[280px] sm:h-96 md:h-[320px]  lg:h-[380px] xl:h-[500px] w-2/3  object-top object-cover"
                       />
                       <img
-                        src="https://via.placeholder.com/200x300"
-                        alt="Side Fitness"
-                        className=" absolute top-24 sm:top-32 xl:top-40 left-1/3 sm:left-48 md:left-20 lg:left-28 xl:left-40 w-2/3 h-64 sm:h-96 md:h-72 lg:h-[340px] xl:h-[440px] border-4 border-white rounded-lg shadow-lg"
+                        src="https://i.ibb.co.com/Rg9zBct/img-1-copyright.jpg"
+                        alt="sports shoes"
+                        className="object-cover absolute top-24 sm:top-32 xl:top-40 left-1/3 sm:left-48 md:left-20 lg:left-28 xl:left-40 w-2/3 h-64 sm:h-96 md:h-72 lg:h-[340px] xl:h-[440px] border-4 border-white rounded-lg shadow-lg"
                       />
                     </div>
                   </Slide>

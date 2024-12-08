@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { ProductContext } from "../provider/ProductInfoProvider";
 import { useLocation } from "react-router-dom";
+import { PiFacebookLogo, PiInstagramLogo, PiTwitterLogo, PiYoutubeLogo } from "react-icons/pi";
 
 const Footer = () => {
   const { darkMode } = useContext(ProductContext);
@@ -8,10 +9,8 @@ const Footer = () => {
   return (
     <>
       <footer
-        className={`footer bg-base-200 text-base-content p-10 ${
-          location.pathname === "/"
-            ? darkMode ? "text-black bg-slate-300":"text-[#cbcbcb] bg-[#2d2d2d]"
-            : "text-[#cbcbcb] bg-[#2d2d2d]"
+        className={`footer text-base-content p-10 ${
+          location.pathname === "/"? darkMode ? "text-black bg-slate-300" : "text-[#c0c0c0] bg-[#2d2d2d]": "text-[#c0c0c0] bg-[#2d2d2d]"
         }`}
       >
         <aside className="">
@@ -38,29 +37,49 @@ const Footer = () => {
             <br />
             Providing reliable sports equipments since 2010
           </p>
+            <p>
+              <p className="text-xl font-medium">Contact with us</p>
+               <p>EquiSports@gmail.com</p>  
+            </p>
+             <div className="flex justify-between items-center gap-2 mt-2 text-xl cursor-pointer">
+             <PiFacebookLogo />
+             <PiYoutubeLogo />
+             <PiInstagramLogo />
+             <PiTwitterLogo />
+             </div>
         </aside>
         <nav>
-          <h6 className="footer-title">Services</h6>
-          <a className="link link-hover">Branding</a>
-          <a className="link link-hover">Design</a>
-          <a className="link link-hover">Marketing</a>
+          <h6 className="footer-title">Explore</h6>
+          <a className="link link-hover">English Willow</a>
+          <a className="link link-hover">Tennis Bats</a>
+          <a className="link link-hover">Player Edition</a>
           <a className="link link-hover">Advertisement</a>
         </nav>
         <nav>
           <h6 className="footer-title">Company</h6>
           <a className="link link-hover">About us</a>
           <a className="link link-hover">Contact</a>
+          <a className="link link-hover">Store Locator</a>
           <a className="link link-hover">Jobs</a>
-          <a className="link link-hover">Press kit</a>
         </nav>
         <nav>
           <h6 className="footer-title">Legal</h6>
+          <a className="link link-hover">Refund & Return</a>
+          <a className="link link-hover">Shipping & Delivery</a>
           <a className="link link-hover">Terms of use</a>
           <a className="link link-hover">Privacy policy</a>
           <a className="link link-hover">Cookie policy</a>
         </nav>
       </footer>
-      <div className={`py-6 ${ location.pathname === "/" ? darkMode ? "text-[#4f4f4f]  bg-slate-300 border-t border-slate-200" :"bg-[#2d2d2d] text-[#c7c7c7] border-t border-[#ffffff11]" : "bg-[#2d2d2d] text-[#c7c7c7] border-t border-[#ffffff11]"}`}>
+      <div
+        className={`py-6 ${
+          location.pathname === "/"
+            ? darkMode
+              ? "text-[#4f4f4f]  bg-slate-300 border-t border-slate-200"
+              : "bg-[#2d2d2d] text-[#c7c7c7] border-t border-[#ffffff11]"
+            : "bg-[#2d2d2d] text-[#c7c7c7] border-t border-[#ffffff11]"
+        }`}
+      >
         <h1 className="text-lg font-DMSans text-center">
           &#169; 2024
           <a
@@ -71,7 +90,7 @@ const Footer = () => {
           >
             Equi<span className="text-red-500">Sports</span>
           </a>
-           All Rights Reserved.
+          All Rights Reserved.
         </h1>
       </div>
     </>
