@@ -10,7 +10,7 @@ const Footer = () => {
     <>
       <footer
         className={`footer text-base-content p-10 ${
-          location.pathname === "/"? darkMode ? "text-black bg-slate-300" : "text-[#c0c0c0] bg-[#2d2d2d]": "text-[#c0c0c0] bg-[#2d2d2d]"
+          location.pathname === "/"? darkMode ? "text-black bg-slate-300" : "text-white bg-[#2d2d2d]": "text-white bg-[#2d2d2d]"
         }`}
       >
         <aside className="">
@@ -37,10 +37,10 @@ const Footer = () => {
             <br />
             Providing reliable sports equipments since 2010
           </p>
-            <p>
+            <div>
               <p className="text-xl font-medium">Contact with us</p>
                <p>EquiSports@gmail.com</p>  
-            </p>
+            </div>
              <div className="flex justify-between items-center gap-2 mt-2 text-xl cursor-pointer">
              <PiFacebookLogo />
              <PiYoutubeLogo />

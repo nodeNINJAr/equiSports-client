@@ -46,7 +46,7 @@ const CategorySlider = () => {
             alt=""
             className=" h-32 sm:h-40 lg:h-[200px] w-full mx-auto object-cover rounded-lg"
           />
-          <Link to="/categories-products">
+          <Link to="/categories-products/cricket-helmet">
             <p className="hidden group-hover:flex transition-all  ease-in-out duration-600 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[#EC3D08] bg-slate-300 rounded-lg px-1 py-1 cursor-pointer font-medium text-xl">
               Cricket Bat
             </p>
@@ -60,9 +60,9 @@ const CategorySlider = () => {
             alt=""
             className=" h-32 sm:h-40 lg:h-[200px] w-full mx-auto object-cover rounded-lg"
           />
-          <Link to="/categories-products">
+          <Link to="/categories-products/shoes">
             <p className="hidden group-hover:flex transition-all  ease-in-out duration-600 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[#EC3D08] bg-slate-300 rounded-lg px-1 py-1 cursor-pointer font-medium text-xl">
-              Cricket shoes
+              Sports shoes
             </p>
           </Link>
         </div>

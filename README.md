@@ -2,7 +2,7 @@
 
 
 ## Website live link:
-[Link -1(firebase)](https://choosealicense.com/licenses/mit/) 
+[Link -1(firebase)](https://equisports-8bcb6.web.app/) 
 
 [Link -2(netlify)](https://equisportseu.netlify.app/)
 

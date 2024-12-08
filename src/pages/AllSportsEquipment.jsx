@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { GoArrowUpRight } from "react-icons/go";
 import { Link, useLocation } from "react-router-dom";
 import { ProductContext } from "../provider/ProductInfoProvider";
@@ -8,14 +8,16 @@ import {
   MdOutlineKeyboardArrowDown,
   MdOutlineKeyboardArrowUp,
 } from "react-icons/md";
-import { Fade } from "react-awesome-reveal";
+import Lottie from "lottie-react";
+import addFirstIcon from "../assets/lottie/noitemhere.json";
+// 
 const AllSportsEquipment = () => {
   //
   const { products, loaderP } = useContext(ProductContext);
   //
-  const [sortedProducts, setSortedProducts] = useState(
-    Array.isArray(products) ? products : []
-  );
+  const [sortedProducts, setSortedProducts] = useState(Array.isArray(products) ? products : []);
+  //
+  const [search, setSearch] = useState("");
   //
   const location = useLocation();
   // for sort
@@ -37,7 +39,6 @@ const AllSportsEquipment = () => {
     }
   };
   //
-
   const handleSortByprice = (sortBy) => {
     setActiveSort(sortBy);
     const sortedData = [...sortedProducts].sort(
@@ -53,6 +54,22 @@ const AllSportsEquipment = () => {
     );
     setSortedProducts(sortedData);
   };
+
+  // search
+  useEffect(() => {
+    fetch(`http://localhost:5000/findProducts?searchParams=${search}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setSortedProducts(data);
+      });
+  }, [search]);
+
+  // func for search
+  const handleSearch = (e) => {
+    const productName = e.target.value;
+    setSearch(productName);
+  };
+
   //
   return (
     <>
@@ -125,7 +142,12 @@ const AllSportsEquipment = () => {
           {/*  */}
           <div className="w-full md:w-6/12 sm:mr-[150px] lg:mr-48">
             <label className="input input-bordered flex items-center gap-2 w-full">
-              <input type="text" className="w-full" placeholder="Search" />
+              <input
+                onChange={handleSearch}
+                type="text"
+                className="w-full"
+                placeholder="Search By Product Name"
+              />
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 16 16"
@@ -146,50 +168,53 @@ const AllSportsEquipment = () => {
           </div>
         </div>
       </div>
-      <div className="w-11/12 mx-auto pb-16 pt-8">
-        {!loaderP ? (
-          <>
-            <Fade delay={250} duration={1000}>
-              <table className="table w-full text-center overflow-auto bg-slate-50 z-0">
-                {/* head */}
-                <thead className="bg-slate-300">
-                  <tr className="text-base">
-                    <th>Serial No</th>
-                    <th>Product Name</th>
-                    <th>Product Category</th>
-                    <th>Product Price</th>
-                    <th>Product Ratings</th>
-                    <th>Product Details</th>
-                  </tr>
-                </thead>
-                {/*  */}
-                {sortedProducts.map((product, idx) => (
-                  <tbody key={idx + "x"} className="">
-                    {/* row 1 */}
-
-                    <tr className="hover:bg-slate-100 text-sm font-DMSans tracking-normal bg-white">
-                      <th>{idx + 1}</th>
-                      <td>{product.productName}</td>
-                      <td>{product.productCate}</td>
-                      <td>{product.productPrice} $</td>
-                      <td>{product.productRating} ⭐ </td>
-                      <td>
-                        <Link to={`/view-details/${product._id}`}>
-                          <button className="flex justify-center  w-32 mx-auto hover:bg-[#F44A16]  hover:text-[#FFF] transition-all ease-in-out duration-200 px-4 py-1 rounded-full  font-medium text-[12px]  items-center gap-1">
-                            View Details
-                            <GoArrowUpRight />
-                          </button>
-                        </Link>
-                      </td>
+      <div className="w-11/12 mx-auto pb-16 pt-8 overflow-auto">
+          {
+            sortedProducts.length > 0 ? (
+              !loaderP ? (
+                <table className="table table-pin-rows w-full text-center bg-slate-50 z-0">
+                  {/* head */}
+                  <thead className="bg-slate-300">
+                    <tr className="text-base">
+                      <th>Serial No</th>
+                      <th>Product Name</th>
+                      <th>Product Category</th>
+                      <th>Product Price</th>
+                      <th>Product Ratings</th>
+                      <th>Product Details</th>
                     </tr>
-                  </tbody>
-                ))}
-              </table>
-            </Fade>
-          </>
-        ) : (
-          <Loader />
-        )}
+                  </thead>
+                  {/*  */}
+                  {sortedProducts.map((product, idx) => (
+                    <tbody key={idx + "x"} className="">
+                      {/* row 1 */}
+      
+                      <tr className="hover:bg-slate-100 text-sm font-DMSans tracking-normal bg-white">
+                        <th>{idx + 1}</th>
+                        <td>{product.productName}</td>
+                        <td>{product.productCate}</td>
+                        <td>{product.productPrice} $</td>
+                        <td>{product.productRating} ⭐ </td>
+                        <td>
+                          <Link to={`/view-details/${product._id}`}>
+                            <button className="flex justify-center  w-32 mx-auto hover:bg-[#F44A16]  hover:text-[#FFF] transition-all ease-in-out duration-200 px-4 py-1 rounded-full  font-medium text-[12px]  items-center gap-1">
+                              View Details
+                              <GoArrowUpRight />
+                            </button>
+                          </Link>
+                        </td>
+                      </tr>
+                    </tbody>
+                  ))}
+                </table>
+              ) : (
+                <Loader />
+              )
+            )
+             :  <div className="w-2/3 md:w-1/2 lg:w-1/3 mx-auto pt-10">
+             <Lottie animationData={addFirstIcon} loop={true}></Lottie>
+           </div>
+          }
       </div>
     </>
   );

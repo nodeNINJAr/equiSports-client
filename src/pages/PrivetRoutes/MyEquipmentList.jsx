@@ -20,16 +20,17 @@ const MyEquipmentList = () => {
   //
   const [uniqueData, setUniqueData] = useState([]);
   //
-  const [sortedProducts, setSortedProducts] = useState(
-    Array.isArray(products) ? products : []
-  );
+  const [sortedProducts, setSortedProducts] = useState([]);
+
+  // search
+  const [search, setSearch] = useState("");
   //
   useEffect(() => {
-    const uniqueData = products.filter(
+    const filteredData = products.filter(
       (product) => product.userEmail === user?.email
     );
-    setUniqueData(uniqueData);
-  }, [products]);
+    setUniqueData(filteredData);
+  }, [products, user]);
 
   // for sort
   const [active, setActive] = useState(false);
@@ -37,8 +38,9 @@ const MyEquipmentList = () => {
     price: "By price",
     rating: "By ratings",
   });
-  const [activeSort, setActiveSort] = useState("");
   //
+  const [activeSort, setActiveSort] = useState("");
+  // sort button active
   const handleActive = (boolean) => {
     setActive(boolean);
     if (!boolean) {
@@ -49,20 +51,42 @@ const MyEquipmentList = () => {
       setShowToggle({ price: "BY price", rating: "By ratings" });
     }
   };
+
+  // sort by price
   const handleSortByprice = (sortBy) => {
     setActiveSort(sortBy);
     const sortedData = [...uniqueData].sort(
       (a, b) => b.productPrice - a.productPrice
     );
-    setSortedProducts(sortedData);
+   setUniqueData(sortedData);
   };
-  //
+
+  //sort by rating
   const handleSortByRaing = (sortBy) => {
     setActiveSort(sortBy);
     const sortedData = [...uniqueData].sort(
       (a, b) => a.productRating - b.productRating
     );
-    setSortedProducts(sortedData);
+    setUniqueData(sortedData);
+  };
+
+  // search
+  useEffect(() => {
+    // ftech for search
+    fetch(`http://localhost:5000/findProducts?searchParams=${search}`)
+      .then((res) => res.json())
+      .then((data) => {
+        const filteredData = data.filter(
+          (product) => product.userEmail === user?.email
+        );
+        setUniqueData(filteredData);
+      });
+  }, [search]);
+
+  // func for search
+  const handleSearch = (e) => {
+    const productName = e.target.value;
+    setSearch(productName);
   };
 
   //
@@ -138,7 +162,12 @@ const MyEquipmentList = () => {
             {/*  */}
             <div className="w-full md:w-6/12 sm:mr-[150px] lg:mr-48">
               <label className="input input-bordered flex items-center gap-2 w-full">
-                <input type="text" className="w-full" placeholder="Search" />
+                <input
+                  onChange={handleSearch}
+                  type="text"
+                  className="w-full"
+                  placeholder="Search By Product Name"
+                />
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 16 16"
@@ -155,7 +184,7 @@ const MyEquipmentList = () => {
             </div>
             <div className="sm:w-3/12 text-end text-[#F44A16] font-semibold text-xl absolute top-7 right-4 md:right-0    ">
               {" "}
-              Total : {uniqueData.length} Product
+              Total :{products.filter(product => product.userEmail === user?.email).length} Product
             </div>
           </div>
         </Slide>
@@ -164,7 +193,7 @@ const MyEquipmentList = () => {
       {uniqueData.length !== 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 w-11/12 mx-auto py-16">
           <>
-            {sortedProducts.map((product) => (
+            {uniqueData.map((product) => (
               <ProductCard key={product._id + "y"} uniqueProduct={product} />
             ))}
           </>

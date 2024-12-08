@@ -64,9 +64,9 @@ export const router = createBrowserRouter([
               element:<DiscountSignUp/>
             },
             {
-              path:"/categories-products",
-              element:<CategoriesProduct/>
-            },
+              path:"/categories-products/:category",
+              element:<CategoriesProduct/>,
+            }
 
           ]
         },

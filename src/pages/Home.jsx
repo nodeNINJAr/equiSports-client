@@ -15,13 +15,13 @@ const Home = () => {
   //
   return (
     <>
-      <div className={darkMode ? "dark-mode" : "light-mode"}>
+      <div className={ darkMode ? "dark-mode" : "light-mode"}>
         {loaderP ? (
           <Loader />
         ) : (
           <>
             {/* slider */}
-            <div className={darkMode && "bg-[#2838366d]"}>
+            <div className={ darkMode ? "bg-[#2838366d] " :""}>
               <SwiperSlider />
             </div>
 

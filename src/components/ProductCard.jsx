@@ -8,7 +8,7 @@ import deleteIcon from "../assets/lottie/deleteForever.json"
 import UpdateIcon from "../assets/lottie/newUpdate (1).json"
 import detailsIcon from "../assets/lottie/details.json"
 // 
-const ProductCard = ({ product, uniqueProduct, rProduct }) => {
+const ProductCard = ({ product, uniqueProduct, rProduct , categoriesProduct}) => {
   //
   const { products, setProducts , darkMode } = useContext(ProductContext);
   // 
@@ -22,7 +22,7 @@ const ProductCard = ({ product, uniqueProduct, rProduct }) => {
     productDesc,
     productName,
     productPrice,
-  } = product || uniqueProduct || rProduct;
+  } = product || uniqueProduct || rProduct || categoriesProduct ;
 
   const handleDelete = (id) => {
     //
