@@ -13,6 +13,8 @@ import ViewDetails from '../pages/PrivetRoutes/ViewDetails';
 import UpdateProduct from '../pages/PrivetRoutes/UpdateProduct';
 import Page404 from '../pages/Page404';
 import ErrorPage from '../pages/ErrorPage';
+import DiscountSignUp from '../pages/DiscountSignUp';
+import CategoriesProduct from '../pages/CategoriesProduct';
 
 // 
 export const router = createBrowserRouter([
@@ -56,7 +58,15 @@ export const router = createBrowserRouter([
             {
               path:"/register",
               element:<Register/>
-            }
+            },
+            {
+              path:"/discount-signUp",
+              element:<DiscountSignUp/>
+            },
+            {
+              path:"/categories-products",
+              element:<CategoriesProduct/>
+            },
 
           ]
         },

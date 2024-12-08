@@ -3,9 +3,11 @@ import AllProducts from "../components/AllProducts";
 import { ProductContext } from "../provider/ProductInfoProvider";
 import Loader from "../components/Loader";
 import { FaCheckCircle } from "react-icons/fa";
-import { Slide } from "react-awesome-reveal";
+import { Fade, Slide } from "react-awesome-reveal";
 import { Link } from "react-router-dom";
 import SwiperSlider from "../components/SwiperSlider";
+import CategorySlider from "../components/CategorySlider";
+import NewsLetter from "../components/NewsLetter";
 
 const Home = () => {
   //
@@ -19,12 +21,12 @@ const Home = () => {
         ) : (
           <>
             {/* slider */}
-            <div className={darkMode&&"bg-[#2838366d]"}>
+            <div className={darkMode && "bg-[#2838366d]"}>
               <SwiperSlider />
             </div>
 
             {/*  */}
-            <div className="w-11/12 mx-auto py-20">
+            <div className="w-11/12 mx-auto py-14 md:py-20">
               <Slide direction="down">
                 <>
                   <h3 className="text-center text-4xl uppercase font-semibold mb-4">
@@ -35,9 +37,9 @@ const Home = () => {
               </Slide>
               <AllProducts products={products} />
               {/* About us section */}
-              <div className="flex flex-col md:flex-row items-center lg:items-start lg:justify-between py-16  md:pb-40 sm:pt-20 gap-8">
+              <div className="flex flex-col md:flex-row items-center lg:items-start lg:justify-between pt-20  pb-6  lg:pb-32 sm:pt-20 gap-8 gap-y-12">
                 {/* Images Section */}
-                <div className="w-full lg:w-1/2 mb-28 md:mb-0">
+                <div className="w-full lg:w-1/2 mb-32 md:mb-0">
                   <Slide direction="left" duration={1500}>
                     <div className="relative">
                       <img
@@ -109,6 +111,19 @@ const Home = () => {
                 </div>
               </div>
             </div>
+            {/* product category */}
+            <section className="w-11/12 mx-auto pb-10  md:pb-20">
+              <Slide direction="down">
+                <>
+                  <h3 className="text-center text-4xl uppercase font-semibold mb-4">
+                    Product Categories
+                  </h3>
+                  <p className=" w-12 h-1 mx-auto bg-[#EC3D08] mb-10 md:mb-16"></p>
+                </>
+              </Slide>
+              {/*  */}
+              <CategorySlider />
+            </section>
             {/* deals sections */}
             <div className="bg-[#EC3D08]">
               <div className=" space-y-8 md:flex justify-between items-center gap-6 w-11/12 mx-auto py-20 md:py-24">
@@ -118,12 +133,16 @@ const Home = () => {
                   </h1>
                 </Slide>
                 <Slide direction="up">
-                  <button className="bg-transparent hover:bg-white hover:text-[#595959] transition-all ease-in-out duration-300 font-medium w-[200px] my-auto py-3 border-2 border-white">
-                    Shop Now
-                  </button>
+                  <Link to="/all-sports-equipment">
+                    <button className="bg-transparent hover:bg-white hover:text-[#595959] transition-all ease-in-out duration-300 font-medium w-[200px] my-auto py-3 border-2 border-white mb-6">
+                      Shop Now
+                    </button>
+                  </Link>
                 </Slide>
               </div>
             </div>
+            {/* newsletter */}
+            <NewsLetter />
           </>
         )}
       </div>
