@@ -9,6 +9,7 @@ import Lottie from "lottie-react";
 import addProduct from "../../assets/lottie/add.json"
 import successIcon from "../../assets/lottie/uploadComplete.json"
 import errorIcon from "../../assets/lottie/loginError.json"
+import { Helmet } from "react-helmet";
 //
 const AddEquipment = () => {
   // context
@@ -93,6 +94,9 @@ const AddEquipment = () => {
   //
   return (
     <>
+     <Helmet>
+       <title>Home || Add Equipment</title>
+    </Helmet>
       <div className="py-4 my-10 ">
         <Hero title={"Add New product"} path={location?.pathname} />
       </div>

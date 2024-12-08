@@ -26,7 +26,7 @@ const SliderContent = ({ title, desc, img, btn }) => {
               {title}
             </h2>
             <p className="text-xl mt-2">{desc}</p>
-            <Link to="/categories-products">
+            <Link to="/all-sports-equipment">
               <button className="mt-4 px-6 py-2 bg-orange-500 text-white rounded hover:bg-orange-600 font-medium flex justify-center items-center gap-4">
                 {btn}{" "}
                 <Lottie

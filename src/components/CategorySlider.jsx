@@ -46,7 +46,7 @@ const CategorySlider = () => {
             alt=""
             className=" h-32 sm:h-40 lg:h-[200px] w-full mx-auto object-cover rounded-lg"
           />
-          <Link to="/categories-products/cricket-helmet">
+          <Link to="/categories-products/cricket-bat">
             <p className="hidden group-hover:flex transition-all  ease-in-out duration-600 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[#EC3D08] bg-slate-300 rounded-lg px-1 py-1 cursor-pointer font-medium text-xl">
               Cricket Bat
             </p>
@@ -60,7 +60,7 @@ const CategorySlider = () => {
             alt=""
             className=" h-32 sm:h-40 lg:h-[200px] w-full mx-auto object-cover rounded-lg"
           />
-          <Link to="/categories-products/shoes">
+          <Link to="/categories-products/sports-shoes">
             <p className="hidden group-hover:flex transition-all  ease-in-out duration-600 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[#EC3D08] bg-slate-300 rounded-lg px-1 py-1 cursor-pointer font-medium text-xl">
               Sports shoes
             </p>
@@ -74,7 +74,7 @@ const CategorySlider = () => {
             alt=""
             className=" h-32 sm:h-40 lg:h-[200px] w-full mx-auto object-cover rounded-lg"
           />
-          <Link to="/categories-products">
+          <Link to="/categories-products/Bags">
             <p className="hidden group-hover:flex transition-all  ease-in-out duration-600 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[#EC3D08] bg-slate-300 rounded-lg px-1 py-1 cursor-pointer font-medium text-xl">
               Bags
             </p>
@@ -88,7 +88,7 @@ const CategorySlider = () => {
             alt=""
             className=" h-32 sm:h-40 lg:h-[200px] w-full mx-auto object-cover rounded-lg"
           />
-          <Link to="/categories-products">
+          <Link to="/categories-products/leg-guards">
             <p className="hidden group-hover:flex transition-all  ease-in-out duration-600 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[#EC3D08] bg-slate-300 rounded-lg px-1 py-1 cursor-pointer font-medium text-xl">
               Leg Guards
             </p>
@@ -102,7 +102,7 @@ const CategorySlider = () => {
             alt=""
             className=" h-32 sm:h-40 lg:h-[200px] w-full mx-auto object-cover rounded-lg"
           />
-          <Link to="/categories-products">
+          <Link to="/categories-products/cricket-ball">
             <p className="hidden group-hover:flex transition-all  ease-in-out duration-600 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[#EC3D08] bg-slate-300 rounded-lg px-1 py-1 cursor-pointer font-medium text-xl">
               Cricket Ball
             </p>
@@ -116,7 +116,7 @@ const CategorySlider = () => {
             alt=""
             className=" h-32 sm:h-40 lg:h-[200px] w-full mx-auto object-cover rounded-lg"
           />
-          <Link to="/categories-products">
+          <Link to="/categories-products/gloves">
             <p className="hidden group-hover:flex transition-all  ease-in-out duration-600 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[#EC3D08] bg-slate-300 rounded-lg px-1 py-1 cursor-pointer font-medium text-xl">
               Gloves
             </p>
@@ -130,7 +130,7 @@ const CategorySlider = () => {
             alt=""
             className=" h-32 sm:h-40 lg:h-[200px] w-full mx-auto object-cover rounded-lg"
           />
-          <Link to="/categories-products">
+          <Link to="/categories-products/batminton-racket">
             <p className=" hidden group-hover:flex transition-all  ease-in-out duration-600 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[#EC3D08] bg-slate-300 rounded-lg px-1 py-1 cursor-pointer font-medium text-xl">
               Racket
             </p>
@@ -144,7 +144,7 @@ const CategorySlider = () => {
             alt=""
             className=" h-32 sm:h-40 lg:h-[200px] w-full mx-auto object-cover rounded-lg"
           />
-          <Link to="/categories-products">
+          <Link to="/categories-products/cricket-helmet">
             <p className=" hidden group-hover:flex transition-all  ease-in-out duration-600 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[#EC3D08] bg-slate-300 rounded-lg px-1 py-1 cursor-pointer font-medium text-xl">
               Cricket Helmet
             </p>

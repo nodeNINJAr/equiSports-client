@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import SwiperSlider from "../components/SwiperSlider";
 import CategorySlider from "../components/CategorySlider";
 import NewsLetter from "../components/NewsLetter";
+import { Helmet } from "react-helmet";
 
 const Home = () => {
   //
@@ -15,6 +16,9 @@ const Home = () => {
   //
   return (
     <>
+    <Helmet>
+       <title>Home</title>
+    </Helmet>
       <div className={ darkMode ? "dark-mode" : "light-mode"}>
         {loaderP ? (
           <Loader />

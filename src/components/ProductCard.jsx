@@ -10,7 +10,7 @@ import detailsIcon from "../assets/lottie/details.json"
 // 
 const ProductCard = ({ product, uniqueProduct, rProduct , categoriesProduct}) => {
   //
-  const { products, setProducts , darkMode } = useContext(ProductContext);
+  const { products, setProducts  } = useContext(ProductContext);
   // 
   const {
     _id,
@@ -18,7 +18,6 @@ const ProductCard = ({ product, uniqueProduct, rProduct , categoriesProduct}) =>
     productRating,
     StockProduct,
     productCate,
-    processingtime,
     productDesc,
     productName,
     productPrice,

@@ -7,6 +7,7 @@ import { Fade } from "react-awesome-reveal";
 import Lottie from "lottie-react";
 import successIcon from "../../assets/lottie/mainScene.json"
 import loginErrorIcon from "../../assets/lottie/loginError.json"
+import { Helmet } from "react-helmet";
 
 const Login = () => {
   const { loginUsingEmailPass, signInWithGoogle, Toast } =
@@ -85,6 +86,9 @@ const Login = () => {
 
   return (
     <div className="flex items-center justify-center loginBg px-6 py-16 md:p-20">
+      <Helmet>
+       <title>Home || login</title>
+    </Helmet>
       <Fade delay={200} duration={1000}>
         <div className="flex flex-wrap  shadow-lg rounded-lg overflow-hidden max-w-4xl w-full">
           {/* Left Side */}

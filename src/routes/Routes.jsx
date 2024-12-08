@@ -15,6 +15,7 @@ import Page404 from '../pages/Page404';
 import ErrorPage from '../pages/ErrorPage';
 import DiscountSignUp from '../pages/DiscountSignUp';
 import CategoriesProduct from '../pages/CategoriesProduct';
+import Cart from '../pages/PrivetRoutes/Cart';
 
 // 
 export const router = createBrowserRouter([
@@ -35,6 +36,10 @@ export const router = createBrowserRouter([
               path:"/view-details/:id",
               element:<PrivateRoute><ViewDetails/></PrivateRoute>,
               loader: ({params})=> fetch(`https://equi-sports-server-green.vercel.app/my-equipment-list/update-product/${params.id}`)
+            },
+            {
+              path:"/view-details/cart/:id",
+              element:<PrivateRoute><Cart/></PrivateRoute>
             },
             {
               path:"/add-equipment",

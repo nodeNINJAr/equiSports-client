@@ -11,6 +11,7 @@ import {
   MdOutlineKeyboardArrowDown,
   MdOutlineKeyboardArrowUp,
 } from "react-icons/md";
+import { Helmet } from "react-helmet";
 
 //
 const MyEquipmentList = () => {
@@ -19,8 +20,6 @@ const MyEquipmentList = () => {
   const { user } = useContext(AuthContext);
   //
   const [uniqueData, setUniqueData] = useState([]);
-  //
-  const [sortedProducts, setSortedProducts] = useState([]);
 
   // search
   const [search, setSearch] = useState("");
@@ -46,7 +45,6 @@ const MyEquipmentList = () => {
     if (!boolean) {
       setShowToggle({});
       setActiveSort("");
-      setSortedProducts(uniqueData);
     } else {
       setShowToggle({ price: "BY price", rating: "By ratings" });
     }
@@ -56,7 +54,7 @@ const MyEquipmentList = () => {
   const handleSortByprice = (sortBy) => {
     setActiveSort(sortBy);
     const sortedData = [...uniqueData].sort(
-      (a, b) => b.productPrice - a.productPrice
+      (a, b) => a.productPrice - b.productPrice
     );
    setUniqueData(sortedData);
   };
@@ -65,7 +63,7 @@ const MyEquipmentList = () => {
   const handleSortByRaing = (sortBy) => {
     setActiveSort(sortBy);
     const sortedData = [...uniqueData].sort(
-      (a, b) => a.productRating - b.productRating
+      (a, b) => b.productRating - a.productRating
     );
     setUniqueData(sortedData);
   };
@@ -73,7 +71,7 @@ const MyEquipmentList = () => {
   // search
   useEffect(() => {
     // ftech for search
-    fetch(`http://localhost:5000/findProducts?searchParams=${search}`)
+    fetch(`https://equi-sports-server-green.vercel.app/findProducts?searchParams=${search}`)
       .then((res) => res.json())
       .then((data) => {
         const filteredData = data.filter(
@@ -92,6 +90,9 @@ const MyEquipmentList = () => {
   //
   return (
     <>
+    <Helmet>
+       <title>Home || My Equipment</title>
+    </Helmet>
       <div className="py-4 my-10 ">
         <Hero title={"My Equipment List"} path={location?.pathname} />
       </div>

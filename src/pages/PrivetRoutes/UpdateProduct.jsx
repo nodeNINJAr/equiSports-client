@@ -110,7 +110,7 @@ const UpdateProduct = () => {
                     {products.filter((i) => i.userEmail === user?.email).length}
                   </span>
                 </span>
-                <button className="btn bg-[#9feea7] rounded-full px-6 text-base">
+                <button className="btn bg-[#F44A16] rounded-full px-6 text-base">
                   {lottie ==="succ" && <Lottie animationData={successIcon} loop={false} style={{width:40, height:40}}/>} {lottie ==="err" && <Lottie animationData={errorIcon} loop={true} style={{width:30, height:30}}/> } {lottie === "" && <Lottie animationData={successIcon} loop={false} style={{width:40, height:40}}/>} Update Product
                 </button>
               </div>

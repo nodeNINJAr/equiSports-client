@@ -10,6 +10,7 @@ import {
 } from "react-icons/md";
 import Lottie from "lottie-react";
 import addFirstIcon from "../assets/lottie/noitemhere.json";
+import { Helmet } from "react-helmet";
 // 
 const AllSportsEquipment = () => {
   //
@@ -42,7 +43,7 @@ const AllSportsEquipment = () => {
   const handleSortByprice = (sortBy) => {
     setActiveSort(sortBy);
     const sortedData = [...sortedProducts].sort(
-      (a, b) => b.productPrice - a.productPrice
+      (a, b) => a.productPrice - b.productPrice
     );
     setSortedProducts(sortedData);
   };
@@ -50,14 +51,14 @@ const AllSportsEquipment = () => {
   const handleSortByRaing = (sortBy) => {
     setActiveSort(sortBy);
     const sortedData = [...sortedProducts].sort(
-      (a, b) => a.productRating - b.productRating
+      (a, b) => b.productRating - a.productRating
     );
     setSortedProducts(sortedData);
   };
 
   // search
   useEffect(() => {
-    fetch(`http://localhost:5000/findProducts?searchParams=${search}`)
+    fetch(`https://equi-sports-server-green.vercel.app/findProducts?searchParams=${search}`)
       .then((res) => res.json())
       .then((data) => {
         setSortedProducts(data);
@@ -73,6 +74,9 @@ const AllSportsEquipment = () => {
   //
   return (
     <>
+    <Helmet>
+       <title>Home || All Sports Equipment</title>
+    </Helmet>
       <div className="py-4 my-10 ">
         <Hero title={"all sport equipment"} path={location?.pathname} />
       </div>

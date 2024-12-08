@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { ProductContext } from "../../provider/ProductInfoProvider";
 import ProductCard from "../../components/ProductCard";
 import Hero from "../../components/Hero";
 import { Fade } from "react-awesome-reveal";
+import { Helmet } from "react-helmet";
 
 const ViewDetails = () => {
   const { products } = useContext(ProductContext);
@@ -23,6 +24,9 @@ const ViewDetails = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Home || product details</title>
+      </Helmet>
       <div className="py-4 my-10 ">
         <Hero title={"Product Details"} path={location?.pathname} />
       </div>
@@ -77,7 +81,12 @@ const ViewDetails = () => {
                   </p>
                 </div>
               </div>
-                  <button className="btn w-full uppercase text-xl bg-[#323232] text-white hover:bg-slate-700">Add to cart</button>
+              <Link to={`/view-details/cart/${_id}`}>
+                {" "}
+                <button className="btn w-full uppercase text-xl bg-[#323232] text-white hover:bg-slate-700">
+                  Add to cart
+                </button>
+              </Link>
             </div>
           </div>
           <div>

@@ -24,7 +24,7 @@ const ProductInfoProvider = ({ children }) => {
 // 
 
   useEffect(() => {
-    fetch("https://equi-sports-server-green.vercel.app/allproduct")
+    fetch(import.meta.env.VITE_Api_All_products)
       .then((res) => res.json())
       .then((data) => {
         setProducts(Array.isArray(data) ? data : []);
