@@ -52,7 +52,7 @@ const UpdateProduct = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(
-          `http://localhost:5000/my-equipment-list/update-product/${productData?._id}`,
+          `https://equi-sports-server-green.vercel.app/my-equipment-list/update-product/${productData?._id}`,
           {
             method: "PATCH",
             headers: {
@@ -91,7 +91,7 @@ const UpdateProduct = () => {
 
   return (
     <>
-      <div className="py-4 border-y my-10 ">
+      <div className="py-4 my-10 ">
         <Hero title={"Update product"} path={location?.pathname} />
       </div>
       <div className="w-11/12 mx-auto font-DMSans tracking-tight py-10">

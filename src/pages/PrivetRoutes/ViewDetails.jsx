@@ -23,7 +23,7 @@ const ViewDetails = () => {
 
   return (
     <>
-      <div className="py-4 border-y my-10 ">
+      <div className="py-4 my-10 ">
         <Hero title={"Product Details"} path={location?.pathname} />
       </div>
       {/*  */}
@@ -77,6 +77,7 @@ const ViewDetails = () => {
                   </p>
                 </div>
               </div>
+                  <button className="btn w-full uppercase text-xl bg-[#323232] text-white hover:bg-slate-700">Add to cart</button>
             </div>
           </div>
           <div>

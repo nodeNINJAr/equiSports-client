@@ -37,7 +37,7 @@ const ProductCard = ({ product, uniqueProduct, rProduct }) => {
     }).then((result) => {
       if (result.isConfirmed) {
         // product delete from database
-        fetch(`http://localhost:5000/allproduct/${id}`, {
+        fetch(`https://equi-sports-server-green.vercel.app/allproduct/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

@@ -5,8 +5,8 @@ import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { Fade } from "react-awesome-reveal";
 import Lottie from "lottie-react";
-import successIcon from "../../assets/lottie/mainScene.json"
-import loginErrorIcon from "../../assets/lottie/loginError.json"
+import successIcon from "../../assets/lottie/mainScene.json";
+import loginErrorIcon from "../../assets/lottie/loginError.json";
 
 const Register = () => {
   //
@@ -27,15 +27,15 @@ const Register = () => {
   const [url, setUrl] = useState("");
   //
   const [showPass, setShowPass] = useState(false);
-  // 
-  const [lottie , setLottie ] = useState("");
+  //
+  const [lottie, setLottie] = useState("");
   //
   const navigate = useNavigate();
   const handleRegister = (e) => {
     e.preventDefault();
     //
     const form = e.target;
-    // 
+    //
     const userName = form.userName.value;
     if (userName.length >= 4) {
       setSuccess({
@@ -57,23 +57,22 @@ const Register = () => {
     const userEmail = form.userEmail.value;
     const UserPhotoUrl = form.UserPhotoUrl.value;
     const userPassword = form.userPassword.value;
-    if(!testedPass){
+    if (!testedPass) {
       Toast.fire({
-       position: "top-end",
-       iconColor: "white",
-       icon: "error",
-       title: `❌ Please Provide a valid password `,
-     });
-     return
-   
-   }
+        position: "top-end",
+        iconColor: "white",
+        icon: "error",
+        title: `❌ Please Provide a valid password `,
+      });
+      return;
+    }
 
-  //  userinfo
+    //  userinfo
     const newUserInfo = { userName, userEmail, UserPhotoUrl, userPassword };
     //
     registerUsingEmailPass(newUserInfo)
       .then(() => {
-        setLottie("succ")
+        setLottie("succ");
         updateUserProfile(newUserInfo)
           .then(() => {
             Toast.fire({
@@ -91,7 +90,7 @@ const Register = () => {
           .catch(() => {});
       })
       .catch((err) => {
-        setLottie("err")
+        setLottie("err");
         Toast.fire({
           position: "top-end",
           iconColor: "white",
@@ -137,7 +136,7 @@ const Register = () => {
           "✅ Photo URL is valid! Your image URL is successfully accepted and ready to use. 🖼️✨",
       });
       setError({});
-      return
+      return;
     } else {
       setSuccess({});
       setError({
@@ -146,7 +145,7 @@ const Register = () => {
           "⚠️ Invalid Image URL! Please ensure the URL points to a valid image (e.g., ends with .jpg, .jpeg, .png, .gif, etc.). 🌐📸",
       });
     }
-    return
+    return;
   };
 
   // password Validation
@@ -155,7 +154,7 @@ const Register = () => {
     const pass = e.target.value;
     setPassword(pass);
     const redgPassTest = regex.test(pass);
-    setTestedPass(redgPassTest)
+    setTestedPass(redgPassTest);
     if (redgPassTest) {
       setSuccess({
         ...success,
@@ -174,7 +173,7 @@ const Register = () => {
   };
   //
   return (
-    <div className="flex items-center justify-center loginBg px-6 py-16 md:p-20">
+    <div className="flex items-center justify-center loginBg p-3 sm:px-6 py-16 md:p-20">
       <Fade delay={200} duration={1200}>
         <div className="flex flex-wrap shadow-lg rounded-lg overflow-hidden max-w-4xl w-full">
           {/* Left Side */}
@@ -182,14 +181,14 @@ const Register = () => {
             <div className="h-[240px] md:h-full flex flex-col items-center justify-center text-white bg-black bg-opacity-50 p-8">
               <h2 className="text-3xl font-bold">Register Now</h2>
               <p className="mt-4 text-center">
-                Please log in using your personal information to stay connected
-                with us.
+                "📢 Please register using your personal information and get
+                premium services! 🌟 Stay connected with us! 🤝💼"
               </p>
             </div>
           </div>
 
           {/* Right Side */}
-          <div className="w-full md:w-1/2 p-8 bg-[#8887876a] backdrop-blur-sm pt-12 md:pt-8">
+          <div className="w-full md:w-1/2 p-3 sm:p-8 bg-[#8887876a] backdrop-blur-sm pt-12 md:pt-8">
             <h2 className="text-3xl font-bold text-center mb-6">Register</h2>
             <form onSubmit={handleRegister} className="space-y-4">
               <div>
@@ -299,7 +298,21 @@ const Register = () => {
                 type="submit"
                 className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-300 focus:outline-none focus:ring focus:ring-blue-300 flex justify-center items-center gap-2"
               >
-                 {lottie ==="succ" && <Lottie animationData={successIcon} loop={false} style={{width:30, height:30}}/>} {lottie ==="err" && <Lottie animationData={loginErrorIcon} loop={true} style={{width:30, height:30}}/> } Register
+                {lottie === "succ" && (
+                  <Lottie
+                    animationData={successIcon}
+                    loop={false}
+                    style={{ width: 30, height: 30 }}
+                  />
+                )}{" "}
+                {lottie === "err" && (
+                  <Lottie
+                    animationData={loginErrorIcon}
+                    loop={true}
+                    style={{ width: 30, height: 30 }}
+                  />
+                )}{" "}
+                Register
               </button>
             </form>
             <p className="text-center text-[#ffffffb2] text-sm mt-4">
@@ -315,7 +328,7 @@ const Register = () => {
               <span className="text-2xl text-white">or</span>{" "}
               <p className="border-b-2 w-1/2  border-slate-300"></p>
             </div>
-            <div className="flex justify-between items-center mb-8 ">
+            <div className="flex justify-between items-center mb-8 gap-3 ">
               <span
                 className="bg-[#F8F7Fc] px-10 py-2 rounded-md border border-slate-200 flex justify-center items-center gap-3 cursor-pointer"
                 onClick={handleGoogleLogin}

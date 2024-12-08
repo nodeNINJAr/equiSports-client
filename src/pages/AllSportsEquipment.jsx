@@ -56,7 +56,7 @@ const AllSportsEquipment = () => {
   //
   return (
     <>
-      <div className="py-4 border-y my-10 ">
+      <div className="py-4 my-10 ">
         <Hero title={"all sport equipment"} path={location?.pathname} />
       </div>
       <div className="bg-slate-50">

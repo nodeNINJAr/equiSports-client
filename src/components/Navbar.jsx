@@ -63,12 +63,12 @@ const Navbar = () => {
       } navbar py-6`}
     >
       <div className="navbar-start">
-        <div className="dropdown">
+        <div className="dropdown z-50">
           <div
             tabIndex={0}
             role="button"
             className={`${
-              darkMode ? "text-white" : ""
+              location.pathname === "/" ? darkMode && "text-white":  "text-slate-600" 
             } btn btn-ghost lg:hidden p-0 sm:p-4`}
           >
             <svg

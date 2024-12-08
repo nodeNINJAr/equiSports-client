@@ -37,7 +37,7 @@ const Home = () => {
               </Slide>
               <AllProducts products={products} />
               {/* About us section */}
-              <div className="flex flex-col md:flex-row items-center lg:items-start lg:justify-between pt-20  pb-6  lg:pb-32 sm:pt-20 gap-8 gap-y-12">
+              <div className="flex flex-col md:flex-row items-center lg:items-start lg:justify-between pt-20 pb-6  lg:pb-32 sm:pt-20 gap-8 gap-y-6 sm:gap-y-10">
                 {/* Images Section */}
                 <div className="w-full lg:w-1/2 mb-32 md:mb-0">
                   <Slide direction="left" duration={1500}>

@@ -9,7 +9,6 @@ const ProductInfoProvider = ({ children }) => {
   const [refresh , setRefresh] = useState(false);
   //    
   const [loaderP , setLoaderP] = useState(true);
-  // 
    //
    const [darkMode, setDarkMode] = useState(() => {
     return localStorage.getItem("darkMode") === "true";
@@ -22,10 +21,10 @@ const ProductInfoProvider = ({ children }) => {
     });
   };
 
-  // useEffect(() => {}, [darkMode]);
+// 
 
   useEffect(() => {
-    fetch("http://localhost:5000/allproduct")
+    fetch("https://equi-sports-server-green.vercel.app/allproduct")
       .then((res) => res.json())
       .then((data) => {
         setProducts(Array.isArray(data) ? data : []);
@@ -34,7 +33,6 @@ const ProductInfoProvider = ({ children }) => {
     
   }, [refresh,,darkMode]);
 
-// 
 
   //
   const productInfo = {

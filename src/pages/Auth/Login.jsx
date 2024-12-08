@@ -99,11 +99,11 @@ const Login = () => {
           </div>
 
           {/* Right Side */}
-          <div className="w-full md:w-1/2 p-8 bg-[#8887876a] backdrop-blur-sm pt-12 md:pt-8">
+          <div className="w-full md:w-1/2 p-4 sm:p-8 bg-[#8887876a] backdrop-blur-sm pt-12 md:pt-8">
             <h2 className="text-3xl font-bold text-center mb-10">
               Login With{" "}
             </h2>
-            <div className="flex justify-between items-center mb-8 ">
+            <div className="flex justify-between items-center mb-8 gap-4 ">
               <span
                 className="bg-[#F8F7Fc] px-10 py-2 rounded-md border border-slate-200 flex justify-center items-center gap-3 cursor-pointer"
                 onClick={handleGoogleLogin}

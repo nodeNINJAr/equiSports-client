@@ -44,7 +44,7 @@ const AddEquipment = () => {
     //
     if ( productInfo?.productName.length >= 6 && productInfo?.productUrl && !existingProduct) {
       //   fetch for database
-      fetch("http://localhost:5000/add-equipment", {
+      fetch("https://equi-sports-server-green.vercel.app/add-equipment", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
@@ -93,20 +93,20 @@ const AddEquipment = () => {
   //
   return (
     <>
-      <div className="py-4 border-y my-10 ">
+      <div className="py-4 my-10 ">
         <Hero title={"Add New product"} path={location?.pathname} />
       </div>
       {/*  */}
-      <div className="w-11/12 mx-auto font-DMSans tracking-tight py-10">
+      <div className="w-11/12 mx-auto font-DMSans tracking-tight sm:py-10">
         <form onSubmit={handleProductAdd}>
           {/* header */}
           <Slide direction="down">
-            <div className="flex justify-between items-center gap-6">
+            <div className="flex justify-between items-center gap-6 flex-wrap">
               <h1 className="text-3xl font-medium font-barlow tracking-wide flex justify-start items-center">
               <Lottie animationData={addProduct} loop={true} style={{width:60, height:50}} />
                 <span>Add New product</span>
               </h1>
-              <div className="flex justify-between items-center gap-6">
+              <div className="flex justify-between items-center gap-6 flex-wrap">
                 <span className="border px-6 py-3 rounded-lg text-lg font-medium">
                   Total Added product :{" "}
                   <span>

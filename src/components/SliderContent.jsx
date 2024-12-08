@@ -1,7 +1,8 @@
 import Lottie from "lottie-react";
 import React from "react";
 import { Slide } from "react-awesome-reveal";
-import detailsIcon from "../assets/lottie/details.json"
+import detailsIcon from "../assets/lottie/details.json";
+import { Link } from "react-router-dom";
 
 const SliderContent = ({ title, desc, img, btn }) => {
   return (
@@ -25,9 +26,16 @@ const SliderContent = ({ title, desc, img, btn }) => {
               {title}
             </h2>
             <p className="text-xl mt-2">{desc}</p>
-            <button className="mt-4 px-6 py-2 bg-orange-500 text-white rounded hover:bg-orange-600 font-medium flex justify-center items-center gap-4">
-              {btn} <Lottie animationData={detailsIcon} loop={true} style={{width:30, height:30}} />
-            </button>
+            <Link to="/categories-products">
+              <button className="mt-4 px-6 py-2 bg-orange-500 text-white rounded hover:bg-orange-600 font-medium flex justify-center items-center gap-4">
+                {btn}{" "}
+                <Lottie
+                  animationData={detailsIcon}
+                  loop={true}
+                  style={{ width: 30, height: 30 }}
+                />
+              </button>
+            </Link>
           </div>
         </Slide>
       </div>
