@@ -214,10 +214,12 @@ const AddEquipment = () => {
                           </span>
                         </div>
                         <input
-                          type="text"
+                          type="number"
                           name="productPrice"
                           placeholder="Add Product Price"
                           className="input  w-full bg-[#eeeeee]"
+                          min={20}
+                          max={3000}
                         />
                       </label>
                       {/*  */}
@@ -228,10 +230,12 @@ const AddEquipment = () => {
                           </span>
                         </div>
                         <input
-                          type="text"
+                         type="number"
                           name="productRating"
                           placeholder="Add Product Rating"
                           className="input w-full bg-[#eeeeee]"
+                          min={0}
+                          max={5}
                         />
                       </label>
                     </div>
@@ -250,10 +254,12 @@ const AddEquipment = () => {
                           </span>
                         </div>
                         <input
-                          type="text"
+                          type="number"
                           name="ProcessTime"
                           placeholder="Add Processing Time"
                           className="input w-full bg-[#eeeeee]"
+                          min={1}
+                          max={45}
                         />
                       </label>
                       {/*  */}
@@ -264,10 +270,11 @@ const AddEquipment = () => {
                           </span>
                         </div>
                         <input
-                          type="text"
+                          type="number"
                           name="StockProduct"
                           placeholder="Add Available Product"
-                          className="input  w-full bg-[#eeeeee] "
+                          className="input  w-full bg-[#eeeeee] appearance-none "
+                          min={1}
                         />
                       </label>
                     </div>
@@ -329,12 +336,18 @@ const AddEquipment = () => {
                         Product Category
                       </span>
                     </div>
-                    <input
-                      type="text"
-                      name="productCate"
-                      placeholder="Add Product Category"
-                      className="input  w-full bg-[#eeeeee] "
-                    />
+                      <select defaultValue={'default'} className=" w-full bg-[#eeeeee] p-3 rounded-lg text-[#6c6c6c]" >
+                         <option value="default">Select Category</option>
+                         <option value="sports-shoes">Sports shoes</option>
+                         <option value="cricket-bat">Cricket Bat</option>
+                         <option value="Bags"> Bags</option>
+                         <option value="leg-guards">Leg Guards</option>
+                         <option value="cricket-ball">Cricket Ball</option>
+                         <option value="gloves">Gloves</option>
+                         <option value="batminton-racket">Racket</option>
+                         <option value="cricket-helmet">Cricket Helmet</option>
+                         <option value="football">Football</option>
+                      </select>
                   </label>
                   {/*  */}
                   <label className="form-control w-full ">

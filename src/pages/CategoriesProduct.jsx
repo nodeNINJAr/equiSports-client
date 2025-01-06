@@ -10,7 +10,7 @@ const CategoriesProduct = () => {
   const { category } = useParams();
   //
   useEffect(() => {
-    fetch(`http://localhost:5000/categories-products/${category}`)
+    fetch(`https://equi-sports-server-green.vercel.app/categories-products/${category}`)
       .then((res) => res.json())
       .then((data) => {
         setCateProducts(data);

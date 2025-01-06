@@ -63,3 +63,17 @@ body{
     color: white;
   }
 
+/* for remove number field icons*/
+@layer utilities {
+  /* Webkit browsers (Chrome, Safari, Edge) */
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    @apply appearance-none;
+  }
+
+  /* Firefox */
+  input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+}

@@ -108,7 +108,7 @@ const ViewDetails = () => {
             <h1 className="text-3xl font-medium capitalize border-b pb-2">
               Releted Products
             </h1>
-            <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 py-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 py-8">
               {products
                 .filter((product) => product.productCate === productCate)
                 .filter((item) => item._id !== _id)

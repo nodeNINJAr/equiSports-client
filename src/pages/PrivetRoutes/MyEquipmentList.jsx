@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import ProductCard from "../../components/ProductCard";
+
 import { ProductContext } from "../../provider/ProductInfoProvider";
-import { AuthContext } from "../../provider/AuthProvider";
 import Hero from "../../components/Hero";
 import addFirstIcon from "../../assets/lottie/noitemhere.json";
 import Lottie from "lottie-react";
@@ -12,12 +11,17 @@ import {
   MdOutlineKeyboardArrowUp,
 } from "react-icons/md";
 import { Helmet } from "react-helmet";
+import useAuth from "../../components/hooks/useAuth";
+import { GoArrowUpRight } from "react-icons/go";
+import Loader from "../../components/Loader";
+import deleteIcon from "../../assets/lottie/deleteForever.json"
+import UpdateIcon from "../../assets/lottie/newUpdate (1).json"
 
 //
 const MyEquipmentList = () => {
   //context
-  const { products } = useContext(ProductContext);
-  const { user } = useContext(AuthContext);
+  const { products, loaderP  } = useContext(ProductContext);
+  const { user } = useAuth();
   //
   const [uniqueData, setUniqueData] = useState([]);
 
@@ -86,6 +90,40 @@ const MyEquipmentList = () => {
     const productName = e.target.value;
     setSearch(productName);
   };
+
+  const handleDelete = (id) => {
+    //
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // product delete from database
+        fetch(`https://equi-sports-server-green.vercel.app/allproduct/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount === 1) {
+             
+              Swal.fire({
+                title: "Deleted!",
+                text: "🗑️ Product Deleted Successfully! 🚫",
+                icon: "success",
+              });
+            }
+          });
+      }
+    });
+  };
+
+
+
 
   //
   return (
@@ -192,13 +230,69 @@ const MyEquipmentList = () => {
       </div>
       {/*  */}
       {uniqueData.length !== 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 w-11/12 mx-auto py-16">
-          <>
-            {uniqueData.map((product) => (
-              <ProductCard key={product._id + "y"} uniqueProduct={product} />
-            ))}
-          </>
-        </div>
+      <div className="w-11/12 mx-auto py-16  overflow-auto">
+      {
+        uniqueData.length > 0 ? (
+          !loaderP ? (
+            <table className="table table-pin-rows w-full  bg-slate-50 z-0">
+              {/* head */}
+              <thead className="bg-slate-300">
+                <tr className="text-base">
+                  <th>Serial No</th>
+                  <th>Product Name</th>
+                  <th>Product Price</th>
+                  <th>Product Ratings</th>
+                  <th>Product Details</th>
+                  <th>Product Update</th>
+                  <th>Product Delete</th>
+                </tr>
+              </thead>
+              {/*  */}
+              {uniqueData.map((product, idx) => (
+                <tbody key={idx + "x"} className="">
+                  {/* row 1 */}
+                  <tr className="hover:bg-slate-100 text-sm font-DMSans tracking-normal bg-white">
+                    <th>{idx + 1}</th>
+                    <td>{product?.productName}</td>
+                    <td>{product?.productPrice} $</td>
+                    <td>{product?.productRating} ⭐ </td>
+                    <td>
+                      <Link to={`/view-details/${product._id}`}>
+                        <button className="flex justify-center hover:bg-green-400 transition-all ease-in-out duration-200 px-3 py-[2px] rounded-full  font-medium text-[12px]  items-center gap-1">
+                          View Details
+                          <GoArrowUpRight />
+                        </button>
+                      </Link>
+                    </td>
+                    <td>
+                      <Link to={`/my-equipment-list/update-product/${product?._id}`}>
+                      {" "}
+                       <button className=" text-black hover:bg-[#F44A16] px-3 py-[2px] rounded-full font-medium  tracking-normal text-[12px] flex justify-center items-center gap-1 ">
+                         <Lottie animationData={UpdateIcon} loop={true} style={{width:20, height:20}}/> Update
+                        </button>
+                     </Link>
+                    </td>
+                    <td>
+                    <button
+                      onClick={() => handleDelete(product?._id)}
+                       className=" text-black hover:bg-red-500 rounded-full transition-all ease-in-out duration-200 font-medium  text-[12px] flex justify-center items-center gap-1 px-[13px] py-[2px]"
+                        >
+                         Delete <Lottie animationData={deleteIcon} loop={true} style={{width:15, height:15}}/>
+                       </button>
+                    </td>
+                  </tr>
+                </tbody>
+              ))}
+            </table>
+          ) : (
+            <Loader />
+          )
+        )
+         :  <div className="w-2/3 md:w-1/2 lg:w-1/3 mx-auto pt-10">
+         <Lottie animationData={addFirstIcon} loop={true}></Lottie>
+       </div>
+      }
+  </div>
       ) : (
         <Fade duration={1500} delay={200}>
           <>

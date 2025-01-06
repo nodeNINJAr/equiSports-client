@@ -98,7 +98,7 @@ const CategorySlider = () => {
       <SwiperSlide>
         <div className="relative w-full h-32 sm:h-40 lg:h-[200px] mx-auto group ">
           <img
-            src="https://i.ibb.co.com/XFzqRwP/dsc-ruffle-batting-gloves-white-green-orange-4.jpg"
+            src="https://i.ibb.co.com/XxnpNZZ/zoomer02.jpg"
             alt=""
             className=" h-32 sm:h-40 lg:h-[200px] w-full mx-auto object-cover rounded-lg"
           />
@@ -112,7 +112,7 @@ const CategorySlider = () => {
       <SwiperSlide>
         <div className="relative w-full h-32 sm:h-40 lg:h-[200px] mx-auto group ">
           <img
-            src="https://i.ibb.co.com/XxnpNZZ/zoomer02.jpg"
+            src="https://i.ibb.co.com/XFzqRwP/dsc-ruffle-batting-gloves-white-green-orange-4.jpg"
             alt=""
             className=" h-32 sm:h-40 lg:h-[200px] w-full mx-auto object-cover rounded-lg"
           />
