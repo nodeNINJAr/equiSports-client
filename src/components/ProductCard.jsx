@@ -6,7 +6,7 @@ import { Fade } from "react-awesome-reveal";
 import Lottie from "lottie-react";
 import detailsIcon from "../assets/lottie/details.json"
 // 
-const ProductCard = ({ product, uniqueProduct, rProduct , categoriesProduct}) => {
+const ProductCard = ({ product,allProduct, rProduct , categoriesProduct}) => {
   //
   const { products, setProducts  } = useContext(ProductContext);
   // 
@@ -19,9 +19,8 @@ const ProductCard = ({ product, uniqueProduct, rProduct , categoriesProduct}) =>
     productDesc,
     productName,
     productPrice,
-  } = product || uniqueProduct || rProduct || categoriesProduct ;
+  } = product || allProduct || rProduct || categoriesProduct || {}
 
- 
 
   //
   return (

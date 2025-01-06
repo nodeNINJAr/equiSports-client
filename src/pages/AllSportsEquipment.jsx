@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { GoArrowUpRight } from "react-icons/go";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { ProductContext } from "../provider/ProductInfoProvider";
 import Loader from "../components/Loader";
 import Hero from "../components/Hero";
@@ -11,12 +10,15 @@ import {
 import Lottie from "lottie-react";
 import addFirstIcon from "../assets/lottie/noitemhere.json";
 import { Helmet } from "react-helmet";
-// 
+import ProductCard from "../components/ProductCard";
+//
 const AllSportsEquipment = () => {
   //
   const { products, loaderP } = useContext(ProductContext);
   //
-  const [sortedProducts, setSortedProducts] = useState(Array.isArray(products) ? products : []);
+  const [sortedProducts, setSortedProducts] = useState(
+    Array.isArray(products) ? products : []
+  );
   //
   const [search, setSearch] = useState("");
   //
@@ -58,7 +60,9 @@ const AllSportsEquipment = () => {
 
   // search
   useEffect(() => {
-    fetch(`https://equi-sports-server-green.vercel.app/findProducts?searchParams=${search}`)
+    fetch(
+      `https://equi-sports-server-green.vercel.app/findProducts?searchParams=${search}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setSortedProducts(data);
@@ -74,9 +78,9 @@ const AllSportsEquipment = () => {
   //
   return (
     <>
-    <Helmet>
-       <title>Home || All Sports Equipment</title>
-    </Helmet>
+      <Helmet>
+        <title>Home || All Sports Equipment</title>
+      </Helmet>
       <div className="py-4 my-10 ">
         <Hero title={"all sport equipment"} path={location?.pathname} />
       </div>
@@ -108,7 +112,7 @@ const AllSportsEquipment = () => {
                   }
                   className={
                     active
-                      ? "absolute top-12 left-0 bg-slate-400 w-32 px-2 py-2 rounded-lg z-50 text-lg transition-all ease-in-out duration-300 capitalize"
+                      ? "absolute top-12 left-0 bg-slate-400 w-32 px-2 py-2 rounded-lg  text-lg transition-all ease-in-out duration-300 capitalize"
                       : "absolute top-0 left-0"
                   }
                 >
@@ -172,54 +176,24 @@ const AllSportsEquipment = () => {
           </div>
         </div>
       </div>
-      <div className="w-11/12 mx-auto pb-16 pt-8 overflow-auto">
-          {
-            sortedProducts.length > 0 ? (
-              !loaderP ? (
-                <table className="table table-pin-rows w-full text-center bg-slate-50 z-0">
-                  {/* head */}
-                  <thead className="bg-slate-300">
-                    <tr className="text-base">
-                      <th>Serial No</th>
-                      <th>Product Name</th>
-                      <th>Product Category</th>
-                      <th>Product Price</th>
-                      <th>Product Ratings</th>
-                      <th>Product Details</th>
-                    </tr>
-                  </thead>
-                  {/*  */}
-                  {sortedProducts.map((product, idx) => (
-                    <tbody key={idx + "x"} className="">
-                      {/* row 1 */}
-      
-                      <tr className="hover:bg-slate-100 text-sm font-DMSans tracking-normal bg-white">
-                        <th>{idx + 1}</th>
-                        <td>{product.productName}</td>
-                        <td>{product.productCate}</td>
-                        <td>{product.productPrice} $</td>
-                        <td>{product.productRating} ⭐ </td>
-                        <td>
-                          <Link to={`/view-details/${product._id}`}>
-                            <button className="flex justify-center  w-32 mx-auto hover:bg-[#F44A16]  hover:text-[#FFF] transition-all ease-in-out duration-200 px-4 py-1 rounded-full  font-medium text-[12px]  items-center gap-1">
-                              View Details
-                              <GoArrowUpRight />
-                            </button>
-                          </Link>
-                        </td>
-                      </tr>
-                    </tbody>
-                  ))}
-                </table>
-              ) : (
-                <Loader />
-              )
-            )
-             :  <div className="w-2/3 md:w-1/2 lg:w-1/3 mx-auto pt-10">
-             <Lottie animationData={addFirstIcon} loop={true}></Lottie>
-           </div>
-          }
-      </div>
+
+      {sortedProducts.length > 0 ? (
+        !loaderP ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 w-11/12 mx-auto py-16">
+            {sortedProducts.map((product) => (
+              <ProductCard key={product._id + "y"} allProduct={product} />
+            ))}
+          </div>
+        ) : (
+          <Loader />
+        )
+      ) : (
+        <div className="w-2/3 md:w-1/2 lg:w-1/3 mx-auto pt-10">
+          <Lottie animationData={addFirstIcon} loop={true}></Lottie>
+        </div>
+      )}
+
+      <div className="w-11/12 mx-auto pb-16 pt-8 overflow-auto"></div>
     </>
   );
 };

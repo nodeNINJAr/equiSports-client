@@ -336,7 +336,7 @@ const AddEquipment = () => {
                         Product Category
                       </span>
                     </div>
-                      <select defaultValue={'default'} className=" w-full bg-[#eeeeee] p-3 rounded-lg text-[#6c6c6c]" >
+                      <select name="productCate" defaultValue={'default'} className=" w-full bg-[#eeeeee] p-3 rounded-lg text-[#6c6c6c]" >
                          <option value="default">Select Category</option>
                          <option value="sports-shoes">Sports shoes</option>
                          <option value="cricket-bat">Cricket Bat</option>

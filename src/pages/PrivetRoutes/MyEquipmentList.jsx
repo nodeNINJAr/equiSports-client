@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-
 import { ProductContext } from "../../provider/ProductInfoProvider";
 import Hero from "../../components/Hero";
 import addFirstIcon from "../../assets/lottie/noitemhere.json";
@@ -14,13 +13,13 @@ import { Helmet } from "react-helmet";
 import useAuth from "../../components/hooks/useAuth";
 import { GoArrowUpRight } from "react-icons/go";
 import Loader from "../../components/Loader";
-import deleteIcon from "../../assets/lottie/deleteForever.json"
-import UpdateIcon from "../../assets/lottie/newUpdate (1).json"
-
+import { RxUpdate } from "react-icons/rx";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import Swal from "sweetalert2";
 //
 const MyEquipmentList = () => {
   //context
-  const { products, loaderP  } = useContext(ProductContext);
+  const { products, loaderP,setRefresh,refresh } = useContext(ProductContext);
   const { user } = useAuth();
   //
   const [uniqueData, setUniqueData] = useState([]);
@@ -110,7 +109,7 @@ const MyEquipmentList = () => {
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount === 1) {
-             
+              setRefresh(!refresh)
               Swal.fire({
                 title: "Deleted!",
                 text: "🗑️ Product Deleted Successfully! 🚫",
@@ -268,7 +267,7 @@ const MyEquipmentList = () => {
                       <Link to={`/my-equipment-list/update-product/${product?._id}`}>
                       {" "}
                        <button className=" text-black hover:bg-[#F44A16] px-3 py-[2px] rounded-full font-medium  tracking-normal text-[12px] flex justify-center items-center gap-1 ">
-                         <Lottie animationData={UpdateIcon} loop={true} style={{width:20, height:20}}/> Update
+                       <RxUpdate /> Update
                         </button>
                      </Link>
                     </td>
@@ -277,7 +276,7 @@ const MyEquipmentList = () => {
                       onClick={() => handleDelete(product?._id)}
                        className=" text-black hover:bg-red-500 rounded-full transition-all ease-in-out duration-200 font-medium  text-[12px] flex justify-center items-center gap-1 px-[13px] py-[2px]"
                         >
-                         Delete <Lottie animationData={deleteIcon} loop={true} style={{width:15, height:15}}/>
+                         Delete <RiDeleteBin6Line />
                        </button>
                     </td>
                   </tr>

@@ -31,7 +31,7 @@ const ProductInfoProvider = ({ children }) => {
         setLoaderP(false);
       });
     
-  }, [refresh,,darkMode]);
+  }, [refresh,darkMode]);
 
 
   //
@@ -42,7 +42,8 @@ const ProductInfoProvider = ({ children }) => {
     loaderP,
     setLoaderP,
     darkModeToggle,
-    darkMode
+    darkMode,
+    refresh
   };
 
   return (
