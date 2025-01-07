@@ -5,24 +5,28 @@ import { useParams } from "react-router-dom";
 import { ProductContext } from "../../provider/ProductInfoProvider";
 import Hero from "../../components/Hero";
 import { Helmet } from "react-helmet";
+import useAuth from "../../components/hooks/useAuth";
 
 const Cart = () => {
-  //
-  const { products } = useContext(ProductContext);
-  const [cartItems, setCartItems] = useState(null);
-  //
-  const { _id } = useParams();
+  const {user} = useAuth();
+  const [cartItems, setCartItems] = useState([]);
   //
   useEffect(() => {
-    setCartItems(products.find((product) => product.id === _id));
-  }, [products]);
+      
+    fetch(`https://equi-sports-server-green.vercel.app/cart/${user?.email}`)
+    .then(res=>res.json())
+    .then(data=>{
+      setCartItems(data)
+    })
+
+  }, []);
 
   return (
     <div className="py-16">
       <Helmet>
         <title>Home || Cart</title>
       </Helmet>
-      <Hero title={"cart"} path={location.pathname} />
+      <Hero title={"cart"}  />
       <div className="px-6 py-20 w-11/12 mx-auto">
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white border border-gray-200">
@@ -35,32 +39,34 @@ const Cart = () => {
                 <th className="text-left px-6 py-3 border-b">Remove</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td className="px-6 py-4 flex items-center">
-                  <img
-                    src={cartItems?.productUrl}
-                    alt=""
-                    className="w-16 h-16 mr-4 object-cover"
-                  />
-                  <span>{cartItems?.productName}</span>
-                </td>
-                <td className="px-6 py-4"></td>
-                <td className="px-6 py-4">
-                  <input
-                    type="number"
-                    min="1"
-                    className="w-16 p-2 border rounded"
-                  />
-                </td>
-                <td className="px-6 py-4"></td>
-                <td className="px-6 py-4">
-                  <button className="text-red-500 hover:text-red-700">
-                    <FaTrash />
-                  </button>
-                </td>
-              </tr>
-            </tbody>
+           {cartItems?.map(item=>(
+               <tbody>
+               <tr>
+                 <td className="px-6 py-4 flex items-center">
+                   <img
+                     src={item?.productUrl}
+                     alt=""
+                     className="w-16 h-16 mr-4 object-cover"
+                   />
+                   <span>{item?.productName}</span>
+                 </td>
+                 <td className="px-6 py-4">{item?.productPrice} $</td>
+                 <td className="px-6 py-4">
+                   <input
+                     type="number"
+                     min="1"
+                     className="w-16 p-2 border rounded"
+                   />
+                 </td>
+                 <td className="px-6 py-4"></td>
+                 <td className="px-6 py-4">
+                   <button className="text-red-500 hover:text-red-700">
+                     <FaTrash />
+                   </button>
+                 </td>
+               </tr>
+             </tbody>
+           ))}
           </table>
         </div>
 

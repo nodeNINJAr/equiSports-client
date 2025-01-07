@@ -7,8 +7,6 @@ import Lottie from "lottie-react";
 import detailsIcon from "../assets/lottie/details.json"
 // 
 const ProductCard = ({ product,allProduct, rProduct , categoriesProduct}) => {
-  //
-  const { products, setProducts  } = useContext(ProductContext);
   // 
   const {
     _id,

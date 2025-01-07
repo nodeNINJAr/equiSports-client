@@ -5,9 +5,22 @@ import ProductCard from "../../components/ProductCard";
 import Hero from "../../components/Hero";
 import { Fade } from "react-awesome-reveal";
 import { Helmet } from "react-helmet";
+import useAuth from "../../components/hooks/useAuth";
+import Swal from "sweetalert2";
 
 const ViewDetails = () => {
+  // toast
+  Swal.mixin({
+    toast: true,
+    customClass: {
+      popup: "colored-toast",
+    },
+    showConfirmButton: false,
+    timer: 1500,
+    timerProgressBar: true,
+  });
   const { products } = useContext(ProductContext);
+  const { user } = useAuth();
 
   const {
     _id,
@@ -22,6 +35,40 @@ const ViewDetails = () => {
     productPrice,
   } = useLoaderData();
 
+  const handleAddToCard = () => {
+    const infoTocart = {
+      productId:_id,
+      productUrl,
+      StockProduct,
+      productName,
+      productPrice,
+      buyerEmail: user?.email,
+    };
+    //   fetch for database
+    fetch("https://equi-sports-server-green.vercel.app/addToCart", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(infoTocart),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if(data?.message){
+           return
+        }
+        //fancy alert
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Product add to cart successfully 🛒✨",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      });
+  };
+
+  //
   return (
     <>
       <Helmet>
@@ -81,9 +128,12 @@ const ViewDetails = () => {
                   </p>
                 </div>
               </div>
-              <Link to={`/view-details/cart/${_id}`}>
+              <Link to={`/view-details/cart/${user?.email}`}>
                 {" "}
-                <button className="btn w-full uppercase text-xl bg-[#323232] text-white hover:bg-slate-700">
+                <button
+                  onClick={handleAddToCard}
+                  className="btn w-full uppercase text-xl bg-[#323232] text-white hover:bg-slate-700"
+                >
                   Add to cart
                 </button>
               </Link>

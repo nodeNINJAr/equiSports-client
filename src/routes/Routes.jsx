@@ -40,7 +40,7 @@ export const router = createBrowserRouter([
               loader: ({params})=> fetch(`https://equi-sports-server-green.vercel.app/my-equipment-list/update-product/${params.id}`)
             },
             {
-              path:"/view-details/cart/:id",
+              path:"/view-details/cart/:email",
               element:<PrivateRoute><Cart/></PrivateRoute>
             },
             {
