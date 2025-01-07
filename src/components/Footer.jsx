@@ -10,7 +10,7 @@ const Footer = () => {
     <>
       <footer
         className={`footer text-base-content p-10 ${
-          location.pathname === "/"? darkMode ? "text-black bg-slate-300" : "text-white bg-[#2d2d2d]": "text-white bg-[#2d2d2d]"
+          location.pathname === "/"? !darkMode ? "text-black bg-slate-300" : "text-white bg-[#2d2d2d]": "text-black bg-slate-300"
         }`}
       >
         <aside className="">
@@ -74,10 +74,10 @@ const Footer = () => {
       <div
         className={`py-6 ${
           location.pathname === "/"
-            ? darkMode
+            ? !darkMode
               ? "text-[#4f4f4f]  bg-slate-300 border-t border-slate-200"
               : "bg-[#2d2d2d] text-[#c7c7c7] border-t border-[#ffffff11]"
-            : "bg-[#2d2d2d] text-[#c7c7c7] border-t border-[#ffffff11]"
+            : "text-[#4f4f4f]  bg-slate-300 border-t border-slate-200"
         }`}
       >
         <h1 className="text-lg font-DMSans text-center">

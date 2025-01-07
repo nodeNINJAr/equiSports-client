@@ -94,6 +94,7 @@ const CategorySlider = () => {
      {swiperData?.map(item=>(
          <SwiperSlide>
          <div className="relative w-full h-32 sm:h-40 lg:h-[190px] mx-auto group">
+           <div className="w-full h-full rounded-lg inset-1 opacity-20 group-hover:opacity-70 transition-opacity ease-in-out duration-500 bg-gray-700 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"></div>
            <img
              src={item?.src}
              alt={item?.alt}

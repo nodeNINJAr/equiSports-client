@@ -1,0 +1,102 @@
+[
+    {
+      "id": 1,
+      "title": "How to Choose the Perfect Badminton Racket",
+      "date": "January 7, 2025",
+      "author": "John Doe",
+      "image": "https://via.placeholder.com/800x400",
+      "content": "Choosing the right badminton racket is crucial for improving your game. Factors like weight, balance, string tension, and grip size can make a huge difference.\n\n**Step 1:** Understand your playing style. Are you an attacking player or a defensive one?\n\n**Step 2:** Choose the right weight. Lighter rackets are ideal for beginners, while heavier ones are suited for advanced players.\n\n**Step 3:** Consider the balance type—head-heavy, head-light, or even balance.\n\nRemember to try out different rackets before making your purchase!",
+      "tags": ["Badminton", "Sports Tips", "Equipment"]
+    },
+    {
+      "id": 2,
+      "title": "Top 10 Badminton Drills for Beginners",
+      "date": "January 6, 2025",
+      "author": "Jane Smith",
+      "description": "Master the basics of badminton with these essential drills for new players.",
+      "image": "https://via.placeholder.com/300",
+      "content": "Start with simple footwork drills and progress to shuttle control exercises. Master the fundamentals to enhance your badminton skills.",
+      "tags": ["Badminton", "Training", "Drills"]
+    },
+    {
+      "id": 3,
+      "title": "5 Tips to Improve Your Smash Power",
+      "date": "January 5, 2025",
+      "author": "Alice Brown",
+      "description": "Learn how to generate more power in your smashes with these easy tips.",
+      "image": "https://via.placeholder.com/300",
+      "content": "Strengthen your grip, improve wrist flexibility, and focus on timing to deliver powerful smashes in your badminton games.",
+      "tags": ["Badminton", "Power", "Smash"]
+    },
+    {
+      "id": 4,
+      "title": "The Ultimate Guide to Badminton String Tension",
+      "date": "January 4, 2025",
+      "author": "John Doe",
+      "description": "Find the perfect string tension for your playing style.",
+      "image": "https://via.placeholder.com/300",
+      "content": "Understand how string tension affects your control and power. Learn how to adjust it for the best performance.",
+      "tags": ["Badminton", "Equipment", "String Tension"]
+    },
+    {
+      "id": 5,
+      "title": "How to Maintain Your Badminton Racket",
+      "date": "January 3, 2025",
+      "author": "Jane Smith",
+      "description": "Keep your racket in top condition with these maintenance tips.",
+      "image": "https://via.placeholder.com/300",
+      "content": "Learn how to clean, store, and re-string your racket to extend its lifespan and performance.",
+      "tags": ["Badminton", "Maintenance", "Equipment"]
+    },
+    {
+      "id": 6,
+      "title": "Top 5 Badminton Shoes for 2025",
+      "date": "January 2, 2025",
+      "author": "Alice Brown",
+      "description": "Discover the best badminton shoes to enhance your game.",
+      "image": "https://via.placeholder.com/300",
+      "content": "From grip to cushioning, find out what makes a great pair of badminton shoes and explore the top models of 2025.",
+      "tags": ["Badminton", "Shoes", "Equipment"]
+    },
+    {
+      "id": 7,
+      "title": "How to Improve Your Footwork in Badminton",
+      "date": "January 1, 2025",
+      "author": "John Doe",
+      "description": "Master footwork techniques to move faster and smarter on the court.",
+      "image": "https://via.placeholder.com/300",
+      "content": "Focus on agility drills, lateral movements, and positioning to improve your footwork and overall performance.",
+      "tags": ["Badminton", "Footwork", "Training"]
+    },
+    {
+      "id": 8,
+      "title": "Badminton Doubles Strategy: Winning Tips",
+      "date": "December 31, 2024",
+      "author": "Jane Smith",
+      "description": "Learn strategies to dominate your doubles matches.",
+      "image": "https://via.placeholder.com/300",
+      "content": "Communicate effectively, cover the court efficiently, and understand attack and defense positions to excel in doubles.",
+      "tags": ["Badminton", "Doubles", "Strategy"]
+    },
+    {
+      "id": 9,
+      "title": "The Importance of Warm-Up and Cool-Down in Badminton",
+      "date": "December 30, 2024",
+      "author": "Alice Brown",
+      "description": "Avoid injuries and enhance performance with proper warm-up and cool-down routines.",
+      "image": "https://via.placeholder.com/300",
+      "content": "Learn the best warm-up stretches and cool-down exercises tailored for badminton players.",
+      "tags": ["Badminton", "Fitness", "Warm-Up"]
+    },
+    {
+      "id": 10,
+      "title": "Badminton Nutrition: What to Eat Before a Match",
+      "date": "December 29, 2024",
+      "author": "John Doe",
+      "description": "Fuel your body with the right nutrients to perform at your best.",
+      "image": "https://via.placeholder.com/300",
+      "content": "Discover the best pre-game meals and hydration tips to optimize your energy levels during a match.",
+      "tags": ["Badminton", "Nutrition", "Fitness"]
+    }
+  ]
+  

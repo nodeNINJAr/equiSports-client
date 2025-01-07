@@ -17,6 +17,7 @@ import DiscountSignUp from '../pages/DiscountSignUp';
 import CategoriesProduct from '../pages/CategoriesProduct';
 import Cart from '../pages/PrivetRoutes/Cart';
 import ContactForm from '../pages/ContactForm';
+import BlogDetails from '../pages/BlogDetails';
 
 // 
 export const router = createBrowserRouter([
@@ -76,7 +77,12 @@ export const router = createBrowserRouter([
             {
               path:"/contact",
               element:<ContactForm/>,
+            },
+            {
+              path:"/blogs/:id",
+              element:<BlogDetails/>,
             }
+
 
 
           ]

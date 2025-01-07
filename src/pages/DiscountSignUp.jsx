@@ -18,7 +18,7 @@ const DiscountSignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
-    fetch("http://localhost:5000/discount-offer", {
+    fetch("https://equi-sports-server-green.vercel.app/discount-offer", {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -9,6 +9,7 @@ import SwiperSlider from "../components/SwiperSlider";
 import CategorySlider from "../components/CategorySlider";
 import NewsLetter from "../components/NewsLetter";
 import { Helmet } from "react-helmet";
+import BlogSection from "./BlogSection";
 
 const Home = () => {
   //
@@ -16,16 +17,16 @@ const Home = () => {
   //
   return (
     <>
-    <Helmet>
-       <title>Home</title>
-    </Helmet>
-      <div className={ darkMode ? "dark-mode" : "light-mode"}>
+      <Helmet>
+        <title>Home</title>
+      </Helmet>
+      <div className={darkMode ? "dark-mode" : "light-mode"}>
         {loaderP ? (
           <Loader />
         ) : (
           <>
             {/* slider */}
-            <div className={ darkMode ? "bg-[#2838366d] " :""}>
+            <div className={darkMode ? "bg-[#2838366d] " : ""}>
               <SwiperSlider />
             </div>
 
@@ -128,6 +129,8 @@ const Home = () => {
               {/*  */}
               <CategorySlider />
             </section>
+            {/* blog  */}
+            <BlogSection />
             {/* deals sections */}
             <div className="bg-[#EC3D08]">
               <div className=" space-y-8 md:flex justify-between items-center gap-6 w-11/12 mx-auto py-20 md:py-24">
@@ -145,6 +148,7 @@ const Home = () => {
                 </Slide>
               </div>
             </div>
+
             {/* newsletter */}
             <NewsLetter />
           </>
