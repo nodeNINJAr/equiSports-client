@@ -6,14 +6,14 @@ import { Link } from "react-router-dom";
 
 const SliderContent = ({ title, desc, img, btn }) => {
   return (
-    <div className="flex flex-col md:flex-row-reverse justify-center items-center gap-10 md:w-11/12 mx-auto px-4 py-20 md:p-10">
+    <div className="flex flex-col md:flex-row-reverse justify-center items-center gap-10 md:w-11/12 mx-auto px-4 py-10 md:py-4">
       <figure className="md:w-1/2 mx-auto">
         <Slide direction="right" duration={1500}>
           <>
             <img
               src={img}
               alt={"Premium Cricket Gear"}
-              className="w-full object-cover rounded-lg md:w-10/12 mx-auto"
+              className="w-full object-cover rounded-lg md:w-9/12 mx-auto"
             />
           </>
         </Slide>
@@ -22,7 +22,7 @@ const SliderContent = ({ title, desc, img, btn }) => {
       <div className="md:w-1/2 mx-auto">
         <Slide direction="left" duration={1500}>
           <div className=" flex flex-col justify-center items-start p-5 gap-4">
-            <h2 className="text-5xl md:text-7xl font-bold tracking-wide">
+            <h2 className="text-4xl md:text-6xl font-bold tracking-wide">
               {title}
             </h2>
             <p className="text-xl mt-2">{desc}</p>

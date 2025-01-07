@@ -2,8 +2,12 @@ import React from "react";
 import { FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
 import emailjs from "emailjs-com";
 import Swal from "sweetalert2";
+import Hero from "../components/Hero";
+import { useLocation } from "react-router-dom";
 
 const ContactForm = () => {
+  // 
+  const location = useLocation();
   // toast
   const Toast = Swal.mixin({
     toast: true,
@@ -40,7 +44,7 @@ const ContactForm = () => {
         },
         (error) => {
           alert("Failed to send message. Please try again later.");
-          console.log(error.text);
+          
         }
       );
 
@@ -48,17 +52,10 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen flex items-center justify-center">
-      <div className="sm:w-11/12 mx-auto px-4 sm:px-0 py-12">
-        <h2 className="text-4xl font-bold text-center text-gray-800 mb-6">
-          Contact Us
-        </h2>
-        <p className="text-center text-gray-600 mb-12">
-          Have questions or need help? We'd love to hear from you! Fill out the
-          form below or reach out directly via email or phone.
-        </p>
-
-        <div className="flex flex-col-reverse md:flex-none md:grid md:grid-cols-2 gap-8 ">
+    <div className="">
+      <Hero title={"Contact us"} path={location?.pathname} />
+      <div className="bg-gray-100 px-4 sm:px-0 py-10 md:py-16">
+        <div className="sm:w-11/12 mx-auto flex flex-col-reverse md:flex-none md:grid md:grid-cols-2 gap-8 ">
           {/* Contact Form */}
           <div className="bg-white p-8 rounded-lg shadow-md">
             <form onSubmit={sendEmail} className="space-y-4">

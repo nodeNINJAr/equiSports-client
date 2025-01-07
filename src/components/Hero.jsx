@@ -18,7 +18,7 @@ const Hero = ({ title, path }) => {
             data-tooltip-content={path}
             className="text-xl font-normal font-DMSans tracking-tight text-[#919191] whitespace-nowrap text-ellipsis overflow-hidden"
           >
-            Home{path.split("/").join(" > ")}
+            Home{path?.split("/").join(" > ")}
           </p>
         </Slide>
       </div>
