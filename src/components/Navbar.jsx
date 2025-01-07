@@ -24,16 +24,20 @@ const Navbar = () => {
       <li>
         <NavLink to="/all-sports-equipment"> All Sports Equipment </NavLink>
       </li>
+     
       {user && (
         <>
           <li>
             <NavLink to="/add-equipment"> Add Equipment</NavLink>
           </li>
           <li>
-            <NavLink to="/my-equipment-list"> My Equipment List</NavLink>
+            <NavLink to="/my-equipment-list"> My Equipment </NavLink>
           </li>
         </>
       )}
+       <li>
+        <NavLink to="/contact"> Contact</NavLink>
+      </li>
     </>
   );
   //  sign Out
@@ -59,7 +63,11 @@ const Navbar = () => {
   return (
     <div
       className={`${
-        location.pathname === "/" ? darkMode ? "bg-[#23272F] border-b border-slate-800" : "bg-white border-b border-slate-100" : "bg-white border-b border-slate-100"
+        location.pathname === "/"
+          ? darkMode
+            ? "bg-[#23272F] border-b border-slate-800"
+            : "bg-white border-b border-slate-100"
+          : "bg-white border-b border-slate-100"
       } navbar py-6 border-b border-slate-100`}
     >
       <div className="navbar-start">
@@ -68,7 +76,9 @@ const Navbar = () => {
             tabIndex={0}
             role="button"
             className={`${
-              location.pathname === "/" ? darkMode && "text-white":  "text-slate-600" 
+              location.pathname === "/"
+                ? darkMode && "text-white"
+                : "text-slate-600"
             } btn btn-ghost lg:hidden p-0 sm:p-4`}
           >
             <svg
@@ -106,13 +116,13 @@ const Navbar = () => {
         <ul
           className={`${
             location.pathname === "/" ? darkMode && "text-white" : ""
-          } menu menu-horizontal px-1 font-DMSans font-medium`}
+          } flex justify-center gap-4 xl:gap-6 font-DMSans font-medium text-sm xl:text-base`}
         >
           {links}
         </ul>
       </div>
-      <div className="navbar-end font-DMSans">
-        <div className="mr-2">
+      <div className="navbar-end font-DMSans md:mr-4">
+        <div className="mr-3">
           {location.pathname === "/" ? (
             darkMode ? (
               <MdOutlineLightMode
@@ -143,7 +153,13 @@ const Navbar = () => {
                 <span className="hidden sm:flex font-semibold">SignOut</span>{" "}
                 <span
                   className="sm:hidden"
-                  data-tooltip-id={location.pathname === "/" ? darkMode ? "my-tooltip-4" : "my-tooltip-5" : "my-tooltip-5"}
+                  data-tooltip-id={
+                    location.pathname === "/"
+                      ? darkMode
+                        ? "my-tooltip-4"
+                        : "my-tooltip-5"
+                      : "my-tooltip-5"
+                  }
                   data-tooltip-content={"Register"}
                 >
                   <Lottie animationData={signOutIcon} loop={true} />

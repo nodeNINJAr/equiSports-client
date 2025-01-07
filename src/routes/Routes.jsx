@@ -16,6 +16,7 @@ import ErrorPage from '../pages/ErrorPage';
 import DiscountSignUp from '../pages/DiscountSignUp';
 import CategoriesProduct from '../pages/CategoriesProduct';
 import Cart from '../pages/PrivetRoutes/Cart';
+import ContactForm from '../pages/ContactForm';
 
 // 
 export const router = createBrowserRouter([
@@ -71,7 +72,12 @@ export const router = createBrowserRouter([
             {
               path:"/categories-products/:category",
               element:<CategoriesProduct/>,
+            },
+            {
+              path:"/contact",
+              element:<ContactForm/>,
             }
+
 
           ]
         },

@@ -23,5 +23,6 @@ createRoot(document.getElementById("root")).render(
     <Tooltip id="my-tooltip-3" place="right" variant="dark" delayShow={400}  />
     <Tooltip id="my-tooltip-4" place="bottom" variant="light"/>
     <Tooltip id="my-tooltip-5" place="bottom" variant="dark"/>
+    
   </StrictMode>
 );

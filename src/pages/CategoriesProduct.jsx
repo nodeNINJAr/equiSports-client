@@ -3,21 +3,26 @@ import Hero from "../components/Hero";
 import ProductCard from "../components/ProductCard";
 import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import Loader from "../components/Loader";
 
 const CategoriesProduct = () => {
   //
   const [cateProducts, setCateProducts] = useState([]);
   const { category } = useParams();
+  const [loading, setLoading]= useState(true);
   //
   useEffect(() => {
     fetch(`https://equi-sports-server-green.vercel.app/categories-products/${category}`)
       .then((res) => res.json())
       .then((data) => {
         setCateProducts(data);
+        setLoading(false)
       });
   }, [category]);
 
-  //
+  if(loading){
+      return <Loader/>
+  }
   //
   return (
     <div>

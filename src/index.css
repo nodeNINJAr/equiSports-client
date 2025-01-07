@@ -77,3 +77,6 @@ body{
     appearance: textfield;
   }
 }
+.active{
+  border-bottom: 1.5px solid #EC3D08;
+}
