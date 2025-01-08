@@ -6,6 +6,8 @@
 
 [Link -2(netlify)](https://equisportseu.netlify.app/)
 
+## About the project
+EquiSports is an online sports equipment shop offering a wide range of gear and equipment for various sports and activities. The platform is designed to provide athletes and sports enthusiasts with quality products, including fitness accessories, outdoor gear, and specialized equipment for team and individual sports. Whether you're a professional or a beginner, EquiSports helps you find the right gear to enhance your performance.
 
 
 ## Key features :
